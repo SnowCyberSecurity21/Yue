@@ -1,0 +1,954 @@
+{
+ "name": "Yue",
+ "version": 4,
+ "author": "Original character created for this project",
+ "art": "Painted sheets generated with ChatGPT from the approved reference sheet; cut, keyed and aligned by tools/art/ai_pack.py",
+ "standing_height": 330,
+ "height": 165,
+ "layout": "<look>/<sheet>.png is one horizontal strip of frames, frame i at x = i*frame_width. Anchor = (frame_width/2, foot_y): the ground point under Yue (for pose=air: the body bottom of frame 0; for pose=jump the in-air frames are already lifted). Draw at height/standing_height scale by default (strips are 2x). faces=right: mirror when moving left.",
+ "looks": {
+  "tee": {
+   "outfit": "tee",
+   "hood": false,
+   "glasses": false,
+   "phones": "none"
+  },
+  "tee_glasses": {
+   "outfit": "tee",
+   "hood": false,
+   "glasses": true,
+   "phones": "none"
+  },
+  "tee_phones": {
+   "outfit": "tee",
+   "hood": false,
+   "glasses": false,
+   "phones": "head"
+  },
+  "hoodie_black": {
+   "outfit": "hoodie_black",
+   "hood": false,
+   "glasses": true,
+   "phones": "neck"
+  },
+  "hood_black": {
+   "outfit": "hoodie_black",
+   "hood": true,
+   "glasses": true,
+   "phones": "head"
+  },
+  "hoodie_silver": {
+   "outfit": "hoodie_silver",
+   "hood": false,
+   "glasses": false,
+   "phones": "none"
+  },
+  "hood_silver": {
+   "outfit": "hoodie_silver",
+   "hood": true,
+   "glasses": true,
+   "phones": "head"
+  }
+ },
+ "slots": {
+  "idle": {
+   "fps": 6,
+   "loop": true,
+   "kind": "state",
+   "blink": {
+    "frames": [
+     4,
+     5,
+     6
+    ],
+    "rest": [
+     0,
+     1,
+     2,
+     3,
+     7
+    ],
+    "every_s": [
+     3,
+     6
+    ],
+    "note": "Loop the 'rest' frames; every 3-6 s (random) play the blink frames once."
+   },
+   "variants": {
+    "tee": {
+     "file": "tee/idle.png",
+     "frames": 8,
+     "frame_width": 176,
+     "frame_height": 344,
+     "foot_y": 337
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/idle.png",
+     "frames": 8,
+     "frame_width": 176,
+     "frame_height": 344,
+     "foot_y": 337
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/idle.png",
+     "frames": 8,
+     "frame_width": 176,
+     "frame_height": 344,
+     "foot_y": 337
+    }
+   }
+  },
+  "walk": {
+   "fps": 8,
+   "loop": true,
+   "faces": "right",
+   "kind": "state",
+   "variants": {
+    "tee": {
+     "file": "tee/walk.png",
+     "frames": 26,
+     "frame_width": 204,
+     "frame_height": 348,
+     "foot_y": 341,
+     "fps": 18.0,
+     "speed": 163.6,
+     "source": "video"
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/walk.png",
+     "frames": 27,
+     "frame_width": 196,
+     "frame_height": 346,
+     "foot_y": 340,
+     "fps": 18.0,
+     "speed": 140.4,
+     "source": "video"
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/walk.png",
+     "frames": 25,
+     "frame_width": 194,
+     "frame_height": 346,
+     "foot_y": 340,
+     "fps": 18.0,
+     "speed": 170.4,
+     "source": "video"
+    },
+    "hood_black": {
+     "file": "hood_black/walk_music.png",
+     "frames": 27,
+     "frame_width": 210,
+     "frame_height": 348,
+     "foot_y": 341,
+     "fps": 18.0,
+     "speed": 155.0,
+     "source": "video"
+    },
+    "hood_silver": {
+     "file": "hood_silver/walk.png",
+     "frames": 25,
+     "frame_width": 204,
+     "frame_height": 348,
+     "foot_y": 342,
+     "fps": 18.0,
+     "speed": 162.0,
+     "source": "video"
+    }
+   },
+   "variant_note": "A variant may carry its own 'fps' (overrides the slot fps) and 'speed': walking speed in pack pixels per second at that fps, measured from the planted foot. Move the window constantly at speed * draw scale; if the fps is scaled, scale speed by the same factor. Variants without 'speed' keep the old constant speed."
+  },
+  "talk": {
+   "fps": 8,
+   "loop": true,
+   "kind": "reaction",
+   "variants": {
+    "tee": {
+     "file": "tee/talk.png",
+     "frames": 6,
+     "frame_width": 196,
+     "frame_height": 344,
+     "foot_y": 337
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/talk.png",
+     "frames": 6,
+     "frame_width": 196,
+     "frame_height": 344,
+     "foot_y": 337
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/talk.png",
+     "frames": 6,
+     "frame_width": 196,
+     "frame_height": 344,
+     "foot_y": 337
+    }
+   }
+  },
+  "sitdown": {
+   "fps": 10,
+   "loop": false,
+   "kind": "state",
+   "variants": {
+    "tee": {
+     "file": "tee/sitdown.png",
+     "frames": 6,
+     "frame_width": 268,
+     "frame_height": 342,
+     "foot_y": 336
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/sitdown.png",
+     "frames": 6,
+     "frame_width": 268,
+     "frame_height": 342,
+     "foot_y": 336
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/sitdown.png",
+     "frames": 6,
+     "frame_width": 268,
+     "frame_height": 342,
+     "foot_y": 336
+    }
+   }
+  },
+  "sleep": {
+   "fps": 3,
+   "loop": true,
+   "kind": "state",
+   "pose": "lying",
+   "variants": {
+    "hoodie_black": {
+     "file": "hoodie_black/sleep.png",
+     "frames": 6,
+     "frame_width": 540,
+     "frame_height": 196,
+     "foot_y": 190
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/sleep.png",
+     "frames": 6,
+     "frame_width": 540,
+     "frame_height": 196,
+     "foot_y": 190
+    }
+   }
+  },
+  "type": {
+   "fps": 6,
+   "loop": true,
+   "kind": "activity",
+   "sit": true,
+   "variants": {
+    "hood_black": {
+     "file": "hood_black/type.png",
+     "frames": 8,
+     "frame_width": 236,
+     "frame_height": 300,
+     "foot_y": 293
+    },
+    "tee_glasses": {
+     "file": "tee_glasses/type.png",
+     "frames": 8,
+     "frame_width": 236,
+     "frame_height": 300,
+     "foot_y": 293
+    },
+    "hood_silver": {
+     "file": "hood_silver/type.png",
+     "frames": 8,
+     "frame_width": 236,
+     "frame_height": 300,
+     "foot_y": 293
+    }
+   }
+  },
+  "walk_music": {
+   "fps": 7,
+   "loop": true,
+   "faces": "right",
+   "kind": "activity",
+   "fallback": "walk",
+   "variants": {
+    "hood_black": {
+     "file": "hood_black/walk_music.png",
+     "frames": 27,
+     "frame_width": 210,
+     "frame_height": 348,
+     "foot_y": 341,
+     "fps": 18.0,
+     "speed": 155.0,
+     "source": "video"
+    },
+    "tee_phones": {
+     "file": "tee_phones/walk_music.png",
+     "frames": 38,
+     "frame_width": 230,
+     "frame_height": 348,
+     "foot_y": 341,
+     "fps": 18.0,
+     "speed": 122.9,
+     "source": "video"
+    }
+   },
+   "variant_note": "A variant may carry its own 'fps' (overrides the slot fps) and 'speed': walking speed in pack pixels per second at that fps, measured from the planted foot. Move the window constantly at speed * draw scale; if the fps is scaled, scale speed by the same factor. Variants without 'speed' keep the old constant speed."
+  },
+  "music": {
+   "fps": 7,
+   "loop": true,
+   "kind": "activity",
+   "fallback": "idle",
+   "variants": {
+    "tee_phones": {
+     "file": "tee_phones/music.png",
+     "frames": 8,
+     "frame_width": 256,
+     "frame_height": 344,
+     "foot_y": 338
+    },
+    "hood_black": {
+     "file": "hood_black/music.png",
+     "frames": 8,
+     "frame_width": 256,
+     "frame_height": 344,
+     "foot_y": 338
+    }
+   }
+  },
+  "expressions": {
+   "static": true,
+   "kind": "reaction",
+   "variants": {
+    "tee": {
+     "sheets": [
+      {
+       "file": "tee/expressions_a.png",
+       "frames": 8,
+       "frame_width": 258,
+       "frame_height": 348,
+       "foot_y": 342,
+       "names": [
+        "grumpy",
+        "happy",
+        "excited",
+        "angry",
+        "sad",
+        "surprised",
+        "sleepy",
+        "smug"
+       ]
+      },
+      {
+       "file": "tee/expressions_b.png",
+       "frames": 8,
+       "frame_width": 252,
+       "frame_height": 348,
+       "foot_y": 341,
+       "names": [
+        "curious",
+        "_love",
+        "disgusted",
+        "thinking",
+        "shy",
+        "embarrassed_angry",
+        "proud",
+        "crying"
+       ]
+      }
+     ]
+    },
+    "hoodie_black": {
+     "sheets": [
+      {
+       "file": "hoodie_black/expressions_a.png",
+       "frames": 8,
+       "frame_width": 258,
+       "frame_height": 348,
+       "foot_y": 342,
+       "names": [
+        "grumpy",
+        "happy",
+        "excited",
+        "angry",
+        "sad",
+        "surprised",
+        "sleepy",
+        "smug"
+       ]
+      },
+      {
+       "file": "hoodie_black/expressions_b.png",
+       "frames": 8,
+       "frame_width": 252,
+       "frame_height": 348,
+       "foot_y": 341,
+       "names": [
+        "curious",
+        "_love",
+        "disgusted",
+        "thinking",
+        "shy",
+        "embarrassed_angry",
+        "proud",
+        "crying"
+       ]
+      }
+     ]
+    },
+    "hoodie_silver": {
+     "sheets": [
+      {
+       "file": "hoodie_silver/expressions_a.png",
+       "frames": 8,
+       "frame_width": 258,
+       "frame_height": 348,
+       "foot_y": 342,
+       "names": [
+        "grumpy",
+        "happy",
+        "excited",
+        "angry",
+        "sad",
+        "surprised",
+        "sleepy",
+        "smug"
+       ]
+      },
+      {
+       "file": "hoodie_silver/expressions_b.png",
+       "frames": 8,
+       "frame_width": 252,
+       "frame_height": 348,
+       "foot_y": 341,
+       "names": [
+        "curious",
+        "_love",
+        "disgusted",
+        "thinking",
+        "shy",
+        "embarrassed_angry",
+        "proud",
+        "crying"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "wave": {
+   "fps": 8,
+   "loop": true,
+   "kind": "reaction",
+   "fallback": "talk",
+   "variants": {
+    "tee": {
+     "file": "tee/wave.png",
+     "frames": 6,
+     "frame_width": 260,
+     "frame_height": 346,
+     "foot_y": 339
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/wave.png",
+     "frames": 6,
+     "frame_width": 260,
+     "frame_height": 346,
+     "foot_y": 339
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/wave.png",
+     "frames": 6,
+     "frame_width": 260,
+     "frame_height": 346,
+     "foot_y": 339
+    }
+   }
+  },
+  "dangle": {
+   "fps": 8,
+   "loop": true,
+   "kind": "reaction",
+   "pose": "air",
+   "fallback": "expressions:surprised",
+   "variants": {
+    "tee": {
+     "file": "tee/dangle.png",
+     "frames": 6,
+     "frame_width": 244,
+     "frame_height": 358,
+     "foot_y": 324
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/dangle.png",
+     "frames": 6,
+     "frame_width": 244,
+     "frame_height": 358,
+     "foot_y": 324
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/dangle.png",
+     "frames": 6,
+     "frame_width": 244,
+     "frame_height": 358,
+     "foot_y": 324
+    }
+   }
+  },
+  "fall": {
+   "fps": 8,
+   "loop": true,
+   "kind": "reaction",
+   "pose": "air",
+   "fallback": "expressions:surprised",
+   "note": "Scared, while falling. On landing play 'land'.",
+   "variants": {
+    "tee": {
+     "file": "tee/fall.png",
+     "frames": 4,
+     "frame_width": 304,
+     "frame_height": 308,
+     "foot_y": 290
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/fall.png",
+     "frames": 4,
+     "frame_width": 304,
+     "frame_height": 308,
+     "foot_y": 290
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/fall.png",
+     "frames": 4,
+     "frame_width": 304,
+     "frame_height": 308,
+     "foot_y": 290
+    }
+   }
+  },
+  "land": {
+   "fps": 6,
+   "loop": false,
+   "kind": "reaction",
+   "fallback": "expressions:angry",
+   "note": "After a fall: lands on her bottom, dazed and tired, then stands up angry. Ends standing.",
+   "variants": {
+    "tee": {
+     "file": "tee/land.png",
+     "frames": 8,
+     "frame_width": 262,
+     "frame_height": 344,
+     "foot_y": 338
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/land.png",
+     "frames": 8,
+     "frame_width": 262,
+     "frame_height": 344,
+     "foot_y": 338
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/land.png",
+     "frames": 8,
+     "frame_width": 262,
+     "frame_height": 344,
+     "foot_y": 338
+    }
+   }
+  },
+  "look_around": {
+   "fps": 4,
+   "loop": true,
+   "kind": "activity",
+   "time": [
+    "morning",
+    "day"
+   ],
+   "variants": {
+    "tee": {
+     "file": "tee/look_around.png",
+     "frames": 8,
+     "frame_width": 204,
+     "frame_height": 344,
+     "foot_y": 337
+    }
+   }
+  },
+  "butterfly": {
+   "fps": 6,
+   "loop": true,
+   "kind": "activity",
+   "time": [
+    "morning",
+    "day"
+   ],
+   "variants": {
+    "tee": {
+     "file": "tee/butterfly.png",
+     "frames": 8,
+     "frame_width": 272,
+     "frame_height": 362,
+     "foot_y": 353
+    }
+   }
+  },
+  "flower": {
+   "fps": 5,
+   "loop": false,
+   "kind": "activity",
+   "time": [
+    "morning",
+    "day"
+   ],
+   "variants": {
+    "tee": {
+     "file": "tee/flower.png",
+     "frames": 8,
+     "frame_width": 214,
+     "frame_height": 344,
+     "foot_y": 337
+    }
+   }
+  },
+  "ponder": {
+   "fps": 4,
+   "loop": true,
+   "kind": "activity",
+   "time": [
+    "evening",
+    "night"
+   ],
+   "variants": {
+    "hoodie_black": {
+     "file": "hoodie_black/ponder.png",
+     "frames": 6,
+     "frame_width": 256,
+     "frame_height": 344,
+     "foot_y": 337
+    }
+   }
+  },
+  "walk_pocket": {
+   "fps": 6,
+   "loop": true,
+   "faces": "right",
+   "kind": "activity",
+   "time": [
+    "evening",
+    "night"
+   ],
+   "variants": {
+    "hoodie_black": {
+     "file": "hoodie_black/walk_pocket.png",
+     "frames": 28,
+     "frame_width": 202,
+     "frame_height": 348,
+     "foot_y": 341,
+     "fps": 18.0,
+     "speed": 153.5,
+     "source": "video"
+    }
+   },
+   "variant_note": "A variant may carry its own 'fps' (overrides the slot fps) and 'speed': walking speed in pack pixels per second at that fps, measured from the planted foot. Move the window constantly at speed * draw scale; if the fps is scaled, scale speed by the same factor. Variants without 'speed' keep the old constant speed."
+  },
+  "tea": {
+   "fps": 4,
+   "loop": false,
+   "kind": "activity",
+   "variants": {
+    "hoodie_black": {
+     "file": "hoodie_black/tea.png",
+     "frames": 8,
+     "frame_width": 210,
+     "frame_height": 344,
+     "foot_y": 338
+    }
+   }
+  },
+  "stretch": {
+   "fps": 6,
+   "loop": false,
+   "kind": "activity",
+   "variants": {
+    "tee": {
+     "file": "tee/stretch.png",
+     "frames": 6,
+     "frame_width": 300,
+     "frame_height": 356,
+     "foot_y": 349
+    }
+   }
+  },
+  "excited_jump": {
+   "fps": 10,
+   "loop": true,
+   "kind": "reaction",
+   "pose": "jump",
+   "fallback": "expressions:excited",
+   "variants": {
+    "tee": {
+     "file": "tee/excited_jump.png",
+     "frames": 6,
+     "frame_width": 288,
+     "frame_height": 356,
+     "foot_y": 349
+    },
+    "hoodie_black": {
+     "file": "hoodie_black/excited_jump.png",
+     "frames": 6,
+     "frame_width": 288,
+     "frame_height": 356,
+     "foot_y": 349
+    },
+    "hoodie_silver": {
+     "file": "hoodie_silver/excited_jump.png",
+     "frames": 6,
+     "frame_width": 288,
+     "frame_height": 356,
+     "foot_y": 349
+    }
+   }
+  },
+  "angry_stomp": {
+   "fps": 8,
+   "loop": true,
+   "kind": "reaction",
+   "fallback": "expressions:angry",
+   "variants": {
+    "tee": {
+     "file": "tee/angry_stomp.png",
+     "frames": 6,
+     "frame_width": 290,
+     "frame_height": 344,
+     "foot_y": 337
+    }
+   }
+  },
+  "train": {
+   "fps": 8,
+   "loop": true,
+   "faces": "right",
+   "kind": "activity",
+   "time": [
+    "morning",
+    "day"
+   ],
+   "variants": {
+    "tee": {
+     "file": "tee/train.png",
+     "frames": 8,
+     "frame_width": 332,
+     "frame_height": 336,
+     "foot_y": 329
+    }
+   }
+  },
+  "sit": {
+   "kind": "state",
+   "source": "sitdown",
+   "frame": -1,
+   "note": "The last frame of sitdown, held."
+  },
+  "standup": {
+   "kind": "state",
+   "source": "sitdown",
+   "reverse": true,
+   "fps": 12,
+   "loop": false
+  },
+  "hood_up": {
+   "fps": 12,
+   "loop": false,
+   "faces": "right",
+   "kind": "transition",
+   "note": "In place, before a walk with the hood up: pulls the hood up and puts the headphones on over it (first frame = the plain hoodie look, last = the hooded walk look). 'walk_frame': the walk starts at that frame of the hooded look's walk strip.",
+   "variants": {
+    "hood_black": {
+     "file": "hood_black/hood_up.png",
+     "frames": 61,
+     "frame_width": 196,
+     "frame_height": 366,
+     "foot_y": 359,
+     "fps": 12.0,
+     "source": "video",
+     "walk_frame": 9
+    }
+   }
+  },
+  "hood_down": {
+   "kind": "transition",
+   "source": "hood_up",
+   "reverse": true,
+   "fps": 12,
+   "fps_scale": 1.5,
+   "loop": false,
+   "faces": "right",
+   "note": "hood_up backwards and 1.5x faster (fps_scale): after the hooded walk, in place, back to the plain hoodie look."
+  }
+ },
+ "expression_map": {
+  "neutral": [
+   "grumpy"
+  ],
+  "happy": [
+   "happy"
+  ],
+  "excited": [
+   "excited"
+  ],
+  "angry": [
+   "angry",
+   "embarrassed_angry"
+  ],
+  "sad": [
+   "sad",
+   "crying"
+  ],
+  "surprised": [
+   "surprised"
+  ],
+  "sleepy": [
+   "sleepy"
+  ],
+  "smug": [
+   "smug",
+   "proud"
+  ],
+  "curious": [
+   "curious"
+  ],
+  "disgusted": [
+   "disgusted"
+  ],
+  "thinking": [
+   "thinking",
+   "curious"
+  ],
+  "shy": [
+   "shy",
+   "embarrassed_angry"
+  ]
+ },
+ "wardrobe": {
+  "periods": {
+   "morning": [
+    6,
+    12
+   ],
+   "day": [
+    12,
+    18
+   ],
+   "evening": [
+    18,
+    22
+   ],
+   "night": [
+    22,
+    6
+   ]
+  },
+  "base_outfits": [
+   "tee",
+   "hoodie_black",
+   "hoodie_silver"
+  ],
+  "outfit_weights": {
+   "morning": {
+    "tee": 0.7,
+    "hoodie_black": 0.1,
+    "hoodie_silver": 0.2
+   },
+   "day": {
+    "tee": 0.75,
+    "hoodie_black": 0.1,
+    "hoodie_silver": 0.15
+   },
+   "evening": {
+    "tee": 0.25,
+    "hoodie_black": 0.45,
+    "hoodie_silver": 0.3
+   },
+   "night": {
+    "tee": 0.1,
+    "hoodie_black": 0.6,
+    "hoodie_silver": 0.3
+   }
+  },
+  "activity_weights": {
+   "morning": {
+    "idle": 3,
+    "walk": 4,
+    "look_around": 3,
+    "butterfly": 2,
+    "flower": 2,
+    "stretch": 2,
+    "tea": 2,
+    "walk_music": 2,
+    "music": 1,
+    "train": 1,
+    "type": 1,
+    "sit": 1
+   },
+   "day": {
+    "idle": 3,
+    "walk": 4,
+    "look_around": 3,
+    "butterfly": 2,
+    "flower": 2,
+    "tea": 1,
+    "walk_music": 3,
+    "music": 2,
+    "train": 1,
+    "type": 2,
+    "sit": 1
+   },
+   "evening": {
+    "idle": 3,
+    "walk": 2,
+    "walk_pocket": 3,
+    "walk_music": 3,
+    "ponder": 3,
+    "type": 3,
+    "music": 2,
+    "tea": 1,
+    "sit": 2
+   },
+   "night": {
+    "idle": 2,
+    "walk_pocket": 3,
+    "walk_music": 2,
+    "ponder": 3,
+    "type": 4,
+    "sit": 2,
+    "sleep": 1
+   }
+  },
+  "hood_walk": {
+   "slots": [
+    "walk",
+    "walk_music"
+   ],
+   "probability": {
+    "morning": 0.2,
+    "day": 0.2,
+    "evening": 0.6,
+    "night": 0.6
+   },
+   "transition": "hood_up",
+   "back": "hood_down",
+   "note": "Hooded looks of these slots are never picked at random. Before a walk in a hoodie the app decides: hood up with 'probability' (the settings' hood choice wins); a slot with only hooded looks (walk_music in the black hoodie) is always hooded, and never chosen when the hood is off. Sequence: 'transition' in place -> hooded walk -> 'back' in place -> the plain look. No transition clip for the look: ~250 ms crossfade instead."
+  },
+  "rules": [
+   "The period comes from the computer's local clock.",
+   "The base outfit is re-rolled only at a period change, on wake-up and on app start.",
+   "Glasses, headphones and the hood are drawn into each look; there are no overlay layers in v4.",
+   "To play a slot, use the variant whose look has the current base outfit. If there are several, pick one at random (e.g. type for tee = tee_glasses); for the slots in 'hood_walk' see its note.",
+   "Activities (kind=activity) whose slot has no variant for the current outfit are simply not chosen.",
+   "Reactions (kind=reaction) without a variant for the current outfit play their 'fallback' (another slot, or 'expressions:<name>') if that has a variant for the current outfit; otherwise hold the first frame of the current outfit's idle. A reaction never changes the outfit.",
+   "Only sleep changes the outfit on purpose. Expressions exist for all three outfits (tee, hoodie_black, hoodie_silver).",
+   "sleep exists only in hoodies: when Yue wears the tee, switch to hoodie_black (night) or hoodie_silver before lying down.",
+   "Sitting activities (sit=true) are preceded by sitdown and followed by standup; sleep: sitdown -> ~250 ms crossfade -> sleep; on wake crossfade -> sit -> standup."
+  ]
+ }
+}

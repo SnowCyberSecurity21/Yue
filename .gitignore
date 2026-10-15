@@ -1,0 +1,26 @@
+# Muhit
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Yig'ish natijalari (build\ ichidagi spec va installer skripti saqlanadi)
+build/*
+!build/yue.spec
+!build/yue.iss
+!build/version_info.txt
+dist/
+
+# Foydalanuvchi ma'lumotlari — hech qachon git'ga emas
+*.db
+*.db-wal
+*.db-shm
+config.json
+data/
+logs/
+*.log
+
+# Muharrir
+.vscode/
+.idea/

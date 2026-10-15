@@ -1,0 +1,44 @@
+[project]
+name = "yue"
+dynamic = ["version"]
+description = "Yue — Windows ish stoli hamrohi va o'zbek tilida gaplashadigan AI yordamchi"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Proprietary" }
+# Aniq versiyalar requirements.txt da qotirilgan.
+dependencies = [
+    "PySide6-Essentials",
+    "anthropic",
+    "httpx",
+    "cryptography",
+    "psutil",
+]
+
+[project.scripts]
+yue = "yue.__main__:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = { attr = "yue.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["yue*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+qt_api = "pyside6"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM"]
+ignore = ["S101", "S311", "SIM102", "SIM105", "SIM108", "SIM905"]  # assert; animatsiya uchun oddiy random (kriptografiyada secrets/os.urandom)
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "E501"]

@@ -1,0 +1,6 @@
+{
+  "_izoh": "Tayyor iboralarni ElevenLabs'da oldindan ovozlashtirish bosqichlari (Sozlamalar → Ovoz). Kalitlar — iboralar.json dagi bo'limlar. \"*\" — qolgan hamma kalitlar. O'zgaruvchili gaplar ({task}, {count}, {hours}…) oldindan yasalmaydi; {ism} li gaplar joriy ism bilan yasaladi.",
+  "1": ["greet", "listen", "thinking", "drag", "thrown", "wake", "pat", "welcome_back", "goodbye", "harakat", "mehr", "taklif"],
+  "2": ["idle", "hazil", "kayfiyat", "sayr", "qoshiq"],
+  "3": ["*"]
+}

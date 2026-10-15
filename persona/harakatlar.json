@@ -1,0 +1,270 @@
+{
+ "_izoh": "Yue bajaradigan buyruqlar. AI javobidagi <harakat>nom</harakat> tegi va internet bo'lmaganda qisqa buyruqlarni tanish uchun. Yangi harakat qo'shish: shu yerga yozuv qo'shing (slot pack.json da bo'lishi kerak) va persona_uz.txt dagi HARAKATLAR ro'yxatiga nomini qo'shing. 'sozlar' — kichik harflarda, tinish belgilarisiz; xabar shu so'z bilan boshlansa va 4 so'zdan oshmasa, AI'siz ham tanib olinadi. 'aisiz': true — buyruq AI'ga yuborilmaydi, tayyor ibora aytiladi. 'uyal' — faqat maqtovga uyalish (romantikasiz). 'raqs' — oddiy o'yin harakati, hamma uchun ishlaydi.",
+ "rejimlar": {
+  "bir_marta": "slot bir marta to'liq o'ynaydi, keyin odatiy hayot",
+  "soniya": "slot 'davomiylik' soniya davomida takrorlanadi",
+  "uygonguncha": "foydalanuvchi uyg'otguncha yoki xabar yozguncha",
+  "keyingi_buyruqgacha": "boshqa buyruq yoki harakat kelguncha",
+  "maxsus": "dastur kodida alohida yozilgan xatti-harakat"
+ },
+ "harakatlar": {
+  "uxla": {
+   "slot": "sleep",
+   "rejim": "uygonguncha",
+   "ibora": "harakat.uxla",
+   "sozlar": [
+    "uxla",
+    "uxlab ol",
+    "uxlagin",
+    "yotib ol",
+    "uxlash vaqti",
+    "ухла",
+    "ухлаб ол",
+    "ётиб ол"
+   ]
+  },
+  "uygon": {
+   "rejim": "maxsus",
+   "ibora": "harakat.uygon",
+   "sozlar": [
+    "uyg'on",
+    "uygon",
+    "tur uyg'on",
+    "уйғон",
+    "уйгон"
+   ]
+  },
+  "sakra": {
+   "slot": "excited_jump",
+   "rejim": "soniya",
+   "davomiylik": 4,
+   "ibora": "harakat.sakra",
+   "sozlar": [
+    "sakra",
+    "sakrab ber",
+    "sakragin",
+    "сакра",
+    "сакраб бер"
+   ]
+  },
+  "kuyla": {
+   "slot": "music",
+   "rejim": "soniya",
+   "davomiylik": 15,
+   "ibora": "qoshiq",
+   "sozlar": [
+    "kuyla",
+    "kuylab ber",
+    "qo'shiq ayt",
+    "qoshiq ayt",
+    "куйла",
+    "куйлаб бер",
+    "қўшиқ айт"
+   ]
+  },
+  "musiqa": {
+   "slot": "music",
+   "rejim": "soniya",
+   "davomiylik": 40,
+   "ibora": "harakat.musiqa",
+   "sozlar": [
+    "musiqa tingla",
+    "musiqa qo'y",
+    "musiqa eshit",
+    "мусиқа тингла",
+    "мусиқа қўй"
+   ]
+  },
+  "kod": {
+   "slot": "type",
+   "rejim": "soniya",
+   "davomiylik": 60,
+   "ibora": "harakat.kod",
+   "sozlar": [
+    "kod yoz",
+    "ishla",
+    "kod yozib ber",
+    "код ёз",
+    "ишла"
+   ]
+  },
+  "choy": {
+   "slot": "tea",
+   "rejim": "bir_marta",
+   "ibora": "harakat.choy",
+   "sozlar": [
+    "choy damla",
+    "choy damlab ber",
+    "choy ich",
+    "чой дамла",
+    "чой ич"
+   ]
+  },
+  "sayr": {
+   "rejim": "maxsus",
+   "davomiylik": 150,
+   "ibora": "sayr.boshlash",
+   "sozlar": [
+    "sayr",
+    "sayr qilamiz",
+    "sayrga chiqamiz",
+    "yur sayr qilamiz",
+    "yuring sayr qilamiz",
+    "сайр",
+    "сайр қиламиз"
+   ]
+  },
+  "salom": {
+   "slot": "wave",
+   "rejim": "soniya",
+   "davomiylik": 3,
+   "ibora": "harakat.salom",
+   "sozlar": [
+    "qo'l silkit",
+    "qol silkit",
+    "salom ber",
+    "қўл силкит"
+   ]
+  },
+  "kerish": {
+   "slot": "stretch",
+   "rejim": "bir_marta",
+   "ibora": "harakat.kerish",
+   "sozlar": [
+    "kerish",
+    "kerishib ol",
+    "cho'zil",
+    "кериш",
+    "керишиб ол"
+   ]
+  },
+  "mashq": {
+   "slot": "train",
+   "rejim": "soniya",
+   "davomiylik": 10,
+   "ibora": "harakat.mashq",
+   "sozlar": [
+    "mashq qil",
+    "boks",
+    "boks qil",
+    "машқ қил",
+    "бокс"
+   ]
+  },
+  "otir": {
+   "slot": "sit",
+   "rejim": "keyingi_buyruqgacha",
+   "ibora": "harakat.otir",
+   "sozlar": [
+    "o'tir",
+    "otir",
+    "o'tirib tur",
+    "ўтир",
+    "ўтириб тур"
+   ]
+  },
+  "tur": {
+   "rejim": "maxsus",
+   "ibora": "harakat.tur",
+   "sozlar": [
+    "tur",
+    "o'rningdan tur",
+    "turgin",
+    "тур",
+    "ўрнингдан тур"
+   ]
+  },
+  "kapalak": {
+   "slot": "butterfly",
+   "rejim": "soniya",
+   "davomiylik": 12,
+   "ibora": "harakat.kapalak",
+   "sozlar": [
+    "kapalak",
+    "kapalak quv",
+    "капалак"
+   ]
+  },
+  "gul": {
+   "slot": "flower",
+   "rejim": "bir_marta",
+   "ibora": "harakat.gul",
+   "sozlar": [
+    "gul hidla",
+    "gul",
+    "гул ҳидла",
+    "гул"
+   ]
+  },
+  "oyla": {
+   "slot": "ponder",
+   "rejim": "soniya",
+   "davomiylik": 12,
+   "ibora": "harakat.oyla",
+   "sozlar": [
+    "o'yla",
+    "oyla",
+    "o'ylab ko'r",
+    "ўйла",
+    "ўйлаб кўр"
+   ]
+  },
+  "jahl": {
+   "slot": "angry_stomp",
+   "rejim": "soniya",
+   "davomiylik": 4,
+   "ibora": "harakat.jahl",
+   "sozlar": [
+    "jahl qil",
+    "jahling chiqsin",
+    "жаҳл қил"
+   ]
+  },
+  "toxta": {
+   "rejim": "maxsus",
+   "ibora": "harakat.toxta",
+   "sozlar": [
+    "to'xta",
+    "toxta",
+    "bas",
+    "bo'ldi",
+    "stop",
+    "тўхта",
+    "бас",
+    "бўлди"
+   ]
+  },
+  "uyal": {
+   "rejim": "maxsus",
+   "ibora": "harakat.uyal"
+  },
+  "raqs": {
+   "slot": "dance",
+   "rejim": "soniya",
+   "davomiylik": 8,
+   "ibora": "harakat.raqs",
+   "sozlar": [
+    "raqs",
+    "raqsga tush",
+    "raqs qil",
+    "raqsga tushib ber",
+    "o'yna",
+    "рақс",
+    "рақсга туш"
+   ]
+  },
+  "hazil": {
+   "rejim": "maxsus",
+   "ibora": "hazil",
+   "aisiz": true,
+   "sozlar": [
+    "hazil ayt",
+    "latifa ayt",
+    "kuldir",
+    "ҳазил айт",
+    "латифа айт",
+    "кулдир"
+   ]
+  }
+ }
+}
