@@ -15,6 +15,10 @@ yurish (klip oxiriga mos `walk_frame` dan) → joyida hood_down → odatiy xudi 
 hood_up klipi bo'lmasa (kumush) — ~250 ms crossfade. Ketma-ketlik o'rtasida reaksiya
 (sudrash, gap, silash...) — kapyushon bekor: hood_down o'ynamasdan odatiy look'ga (`restore`).
 
+Bir martalik reaksiyalar (`KEEP_SLOTS`: land, wave, excited_jump, angry_stomp) gap boshlansa ham
+oxirigacha o'ynaydi: pufak va ovoz darhol chiqadi, faqat talk animatsiyasi kutadi. Reaksiya
+tugaganda gap davom etayotgan bo'lsa — talk, tugagan bo'lsa — gapdan keyingi ifoda (after_talk).
+
 Buyruq qatlami (`run_command`, `persona/harakatlar.json`): foydalanuvchi aytgan harakat o'z-o'zidan
 faoliyatni to'xtatib boshlanadi; gapirish uni to'xtatmaydi, sudrash/otish/yiqilish bekor qiladi.
 Joriy kiyimda rasmi bo'lmasa — buyruq uchun kiyim almashadi (kun qismiga mosrog'i), `time`
@@ -74,6 +78,8 @@ UNTIL_NEXT_MAX = 600.0  # "keyingi_buyruqgacha" — ko'pi bilan 10 daqiqa, keyin
 SAYR_STOP_EVERY = (15.0, 30.0)  # sayrda yurish vaqti to'xtashlar orasida
 SAYR_STOP_S = 4.0  # to'xtab gapirish
 SAYR_LAUGH = 0.3  # to'xtashlarning shu qismida — kulish (happy ifoda)
+# Gap boshlansa ham oxirigacha o'ynaydigan reaksiyalar (talk ularni kesmaydi)
+KEEP_SLOTS = frozenset({"land", "wave", "excited_jump", "angry_stomp"})
 
 CommandResult = Literal["ok", "outfit", "missing", "idle", "busy"]
 
@@ -186,6 +192,8 @@ class Behavior:
         self.released = False  # foydalanuvchi ko'tarib qo'yib yubordi (qo'nguncha)
         self.focus = False
         self.talking = False
+        self._talk_wait = False  # reaksiya o'ynayapti — talk shu tugashini kutyapti
+        self._talk_expr: str | None = None  # kutish paytida tugagan gapning ifodasi
         self.forced_sleep = False
         self.reroll_after = False
         self.expression = "neutral"
@@ -312,6 +320,7 @@ class Behavior:
         self.body.drop()
         self.plan.clear()
         self.step = None
+        self._talk_wait, self._talk_expr = False, None
         self.look = self.wardrobe.adapt(self.look, "dangle")
         self.emit("drag")
 
@@ -389,16 +398,45 @@ class Behavior:
         if on:
             if self.sleeping:
                 self.wake(now)
+            elif self._reaction_playing():
+                self._talk_wait, self._talk_expr = True, None  # reaksiya tugagach talk
+                return
             self._interrupt(now, [Step("talk", "forever")], "talk")
             return
+        if self._talk_wait:
+            self._talk_expr = expression  # gap reaksiya davomida tugadi — talk boshlanmaydi
+            return
         if self.step and self.step.slot == "talk":
-            steps: list[Step] = []
-            if expression and self.expression_available(expression):
-                self.expression = expression
-                steps.append(Step("expressions", "time", self.rng.uniform(3.0, 5.0)))
-            if self.focus:
-                steps.append(Step("idle", "forever"))
-            self._replace_plan(now, steps or [Step("idle", "time", 1.0)], "after_talk")
+            self._after_talk(now, expression)
+
+    def _after_talk(self, now: float, expression: str | None) -> None:
+        steps: list[Step] = []
+        if expression and self.expression_available(expression):
+            self.expression = expression
+            steps.append(Step("expressions", "time", self.rng.uniform(3.0, 5.0)))
+        if self.focus:
+            steps.append(Step("idle", "forever"))
+        self._replace_plan(now, steps or [Step("idle", "time", 1.0)], "after_talk")
+
+    def _reaction_playing(self) -> bool:
+        step = self.step
+        return (
+            step is not None
+            and step.slot in KEEP_SLOTS
+            and step.mode in ("once", "time")
+            and not step.tag
+            and not self.dragging
+            and self.body.grounded
+        )
+
+    def _finish_reaction(self, now: float) -> None:
+        """Reaksiya tugadi, gap esa uni kutgan edi."""
+        expr = self._talk_expr
+        self._talk_wait, self._talk_expr = False, None
+        if self.talking:
+            self._replace_plan(now, [Step("talk", "forever")], "talk")
+        else:
+            self._after_talk(now, expr)
 
     # --- rejalashtirish ---------------------------------------------------------------------
 
@@ -422,6 +460,7 @@ class Behavior:
         self._replace_plan(now, steps, name)
 
     def _replace_plan(self, now: float, steps: list[Step], name: str) -> None:
+        self._talk_wait, self._talk_expr = False, None  # yangi reja — reaksiya kutilmaydi
         self.plan = deque(steps)
         self.activity = name
         self._advance(now)
@@ -908,7 +947,9 @@ class Behavior:
             done = t >= self._duration(step.slot)
         elif step.mode == "time":
             done = t >= step.seconds
-        if done:
+        if done and self._talk_wait and step.slot in KEEP_SLOTS:
+            self._finish_reaction(now)
+        elif done:
             self._advance(now)
 
     def _visual(self, now: float) -> Visual:

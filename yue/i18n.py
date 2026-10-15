@@ -420,6 +420,11 @@ STRINGS: dict[str, str] = {
     "voice.prep.no_key": "ElevenLabs kaliti kiritilmagan.",
     "voice.prep.no_voice": "Ovoz ID kiritilmagan.",
     "voice.notify.title": "Yue — ovoz",
+    "voice.notify.limit": (
+        "Bugungi ovoz chegarasi tugadi ({limit} harf). Ovoz ertaga qaytadi yoki Sozlamalar → Ovoz "
+        "bo'limida chegarani oshiring."
+    ),
+    "menu.voice.off_today": "Ovoz (bugungi chegara tugadi)",
     "voice.notify.auth": "ElevenLabs kaliti noto'g'ri. Yue hozircha faqat yozib gapiradi.",
     "voice.notify.credits": "ElevenLabs krediti tugadi. Yue hozircha faqat yozib gapiradi.",
     "voice.notify.perm": (

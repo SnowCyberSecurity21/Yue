@@ -7,7 +7,9 @@
 - Yangi gap eskisini to'xtatadi (`stop`). `allowed()` — ilova holati (to'liq ekran, uyqu, sudrash).
 - Offline (`ai.manba = offline`) — hech qanday TTS so'rovi yo'q (keshdagi tayyor iboralar o'ynaydi).
 - Kunlik chegara (harf): so'rovdan oldin tekshiriladi, harflar esa faqat ovoz muvaffaqiyatli
-  kelgandan keyin qo'shiladi. Oshsa, ovoz shu kun oxirigacha o'chadi va bitta ibora aytiladi.
+  kelgandan keyin qo'shiladi. Oshsa, shu kun oxirigacha faqat jonli so'rov to'xtaydi (keshdagi
+  iboralar o'ynayveradi), bitta ibora aytiladi, kuniga bir marta bildirishnoma va log qatori.
+  Chegara oshirilsa yoki 0 qilinsa (`set_daily_limit`), bugungi o'chirish bekor bo'ladi.
 - Xatolar: 401 — kalit noto'g'ri, ruxsat yetishmaydi (perm), 402/kredit tugadi — bitta
   bildirishnoma va shu seansda jonli o'qish to'xtaydi; 429 — provayder ichida kutib qayta urinadi.
   Ovoz ishlamasa, Yue matn bilan davom etadi.
@@ -198,19 +200,50 @@ class Voice(QObject):
         return int(self._usage().get("chars", 0))
 
     def _within_limit(self, n: int) -> bool:
-        """So'rovdan oldin: chegaraga sig'adimi (hisobga qo'shmaydi). Sig'masa — shu kun o'chadi."""
+        """So'rovdan oldin: chegaraga sig'adimi (hisobga qo'shmaydi). Sig'masa — shu kun jonli
+        so'rov o'chadi (kesh o'ynayveradi)."""
         u = self._usage()
         if u.get("off"):
             return False
         limit = self.daily_limit
         if limit and int(u["chars"]) + self._inflight + n > limit:
-            u["off"] = True
+            first = not u.get("notified")
+            u["off"] = u["notified"] = True
             self.cfg.set("voice.usage", u)
             self.cfg.save()
             self.stop()
+            log.info("ovoz: kunlik chegara tugadi (%d/%d)", int(u["chars"]), limit)
+            if first:  # kuniga bir marta
+                self.notify.emit(t("voice.notify.title"), t("voice.notify.limit", limit=limit))
             self.limit_reached.emit()
             return False
         return True
+
+    def set_daily_limit(self, limit: int) -> None:
+        """Sozlamalar: yangi kunlik chegara. O'zgarsa va bugun ishlatilganidan katta (yoki 0 —
+        cheklovsiz) bo'lsa, bugungi o'chirish bekor bo'ladi. O'zgarmasa — hech narsa."""
+        limit = max(0, int(limit))
+        if limit == self.daily_limit:
+            return
+        self.cfg.set("voice.daily_chars", limit)
+        u = self._usage()
+        if u.get("off") and (limit == 0 or limit > int(u["chars"])):
+            u["off"] = False
+            self.cfg.set("voice.usage", u)
+            log.info("ovoz: kunlik chegara o'zgardi — ovoz qaytdi")
+
+    def log_state(self) -> None:
+        """Ishga tushganda bitta qator (kalit va voice_id qiymatlari yozilmaydi)."""
+        log.info(
+            "ovoz: yoqilgan=%s, manba=%s, ovoz_id=%s, kalit_bor=%s, bugun %d/%d, off=%s",
+            "ha" if self.enabled else "yo'q",
+            "online" if self.online() else "offline",
+            "bor" if self.voice_id else "yo'q",
+            "ha" if self.has_key() else "yo'q",
+            self.used_today(),
+            self.daily_limit,
+            "ha" if self.off_today() else "yo'q",
+        )
 
     def _add_usage(self, n: int) -> None:
         """Ovoz muvaffaqiyatli keldi — harflar bugungi hisobga qo'shiladi."""
@@ -222,7 +255,9 @@ class Voice(QObject):
     # --- qaror ----------------------------------------------------------------------------------
 
     def active(self) -> bool:
-        return self.enabled and not self.off_today() and self.allowed()
+        """Ovoz chiqishi mumkinmi. Kunlik chegara bu yerda emas — u faqat jonli so'rovni
+        to'xtatadi (`_live`), keshdagi iboralar kredit sarflamaydi."""
+        return self.enabled and self.allowed()
 
     def can_live(self) -> bool:
         """Jonli so'rov yuborish mumkinmi (chegaradan tashqari)."""

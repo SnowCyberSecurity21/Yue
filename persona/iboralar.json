@@ -279,7 +279,7 @@
     ["shy", "Kechirasiz, gapni yo'qotib qo'ydim. Yana bir marta, qisqaroq ayting?"]
   ],
   "no_keys": [
-    ["sad", "Menga hali AI kaliti berilmagan, shuning uchun gaplasha olmayman. Vazifani esa yozaman: «eslat: matn»."],
+    ["sad", "AI kaliti hali yo'q, shuning uchun gaplasha olmayman. Sozlamalarda ulang, vazifani esa hozir yozaman: «eslat: matn»."],
     ["thinking", "Kalitsiz miyam o'chiq. Sozlamalarda AI'ni ulang. Hozircha «eslat 18:00: matn» deb yozsangiz bo'ladi."]
   ],
   "eslat_xato": [

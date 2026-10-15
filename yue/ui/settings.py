@@ -874,7 +874,7 @@ class SettingsDialog(QDialog):
         cfg.set("voice.enabled", self.v_enabled.isChecked())
         cfg.set("voice.volume", self.v_volume.value())
         cfg.set("voice.read_ai", self.v_read_ai.isChecked())
-        cfg.set("voice.daily_chars", self.v_daily.value())
+        c.voice.set_daily_limit(self.v_daily.value())
         cfg.save()
         ai_after = tuple(cfg.get(k) for k in ai_keys)
         c.apply_settings(

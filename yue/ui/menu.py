@@ -59,7 +59,8 @@ def fill_menu(c: Controller, m: QMenu, tray: bool = False) -> None:
         act.triggered.connect(lambda _=False, s=source: c.set_source(s))
         sources.addAction(act)
         m.addAction(act)
-    voice = QAction(t("menu.voice"), m, checkable=True)  # jim qilish tugmasi bilan bir xil
+    voice_text = t("menu.voice.off_today") if c.voice.off_today() else t("menu.voice")
+    voice = QAction(voice_text, m, checkable=True)  # jim qilish tugmasi bilan bir xil
     voice.setChecked(c.voice.enabled)
     voice.triggered.connect(lambda _=False: c.toggle_voice())
     m.addAction(voice)

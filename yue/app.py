@@ -217,6 +217,7 @@ class Controller(QObject):
             HOTKEY_VOICE_ID, "voice.hotkey", hotkey.DEFAULT_VOICE
         )
         log.info("Yue %s ishga tushdi (kun qismi: %s)", __version__, self.period())
+        self.voice.log_state()
         if not self.cfg.get("welcome_done", False):
             QTimer.singleShot(1200, self.show_welcome)
         else:
