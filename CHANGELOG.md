@@ -1,5 +1,10 @@
 # O'zgarishlar
 
+## 1.0.2 — 2026-10-15
+
+- Qo'llanmaga "Aloqa" bo'limi qo'shildi: savol, taklif va xatolar uchun Telegram —
+  [@SnowCybersecurity](https://t.me/SnowCybersecurity).
+
 ## 1.0.1 — 2026-10-15
 
 - Qo'llanma endi `README.html`, litsenziya — `LICENSE.txt`: har qanday kompyuterda brauzer yoki

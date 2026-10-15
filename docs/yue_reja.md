@@ -87,10 +87,15 @@ Hali ochiq:
 - `docs\cc_yue_3.md`: "N" → "Y" orqaga qaytarildi (hech narsa commit qilinmagan edi).
 - **1.0.0 chiqdi** (`v1.0.0` tegi): 1034 test o'tdi, setup ~86 MB, SHA256 `docs\release_1.0.0.md` da. Yangi foydalanuvchi sifatida faqat kalitsiz yo'l sinaldi.
 - Sinovda ikki xato topilib, Yue'da tuzatildi: vazifa iborasida {time}/{task} to'ldirilmasdi, "1 daqiqadan keyin" pastga yaxlitlanardi. Nora'ga ko'chirish `C:\nora\docs\cc_ovoz_chegara.md` ning C qismida.
-- Keyingi qadam: `docs\cc_yue_4.md` (1.0.1):
-  - qo'llanma README.html bo'lib ochiladi, LICENSE.txt;
-  - pack.json dagi "Nora" matnlari tekshiriladi;
-  - o'chirishdagi "ma'lumotlarni ham o'chiraymi?" savoli sinaladi.
+- **1.0.1 chiqdi** (`v1.0.1` tegi), tarqatishga tayyor:
+  - qo'llanma README.html bo'lib ochiladi, LICENSE.txt qo'shildi;
+  - pack.json dagi "Nora" matnlari foydalanuvchiga ham, AI'ga ham ko'rinmaydi;
+  - o'chirishdagi savol sinaldi: "Yo'q" ma'lumotni qoldiradi, "Ha" o'chiradi, Nora'ga tegilmaydi.
+  - Setup: `dist\Yue-1.0.1-setup.exe`, ~87 MB, SHA256 `0dd6040eb3e15afbc8f951244740286fc199c10be2cfb64af7242a23525fb5e7`.
+- Ochiq:
+  - README'dagi "Aloqa" bo'limi bo'sh;
+  - chegara AI javobi o'qilayotganda tugasa, chegara iborasi pufakdagi javobni almashtiradi (Nora'da ham shunday);
+  - raqsdan keyin gap davom etsa, talk qaytmaydi.
 - Siz qo'lda tekshirasiz:
   - ustani haqiqiy Gemini yoki Claude kaliti va ElevenLabs ovozi bilan;
   - tashlanganda land va sayr oxiridagi wave gap bilan kesilmasligini;
