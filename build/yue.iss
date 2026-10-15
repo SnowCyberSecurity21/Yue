@@ -1,12 +1,13 @@
 ; Yue — Inno Setup o'rnatuvchisi.
 ; Avval: .venv\Scripts\pyinstaller build\yue.spec --noconfirm
 ;        .venv\Scripts\python tools\third_party.py   (THIRD_PARTY_LICENSES.txt)
+;        .venv\Scripts\python tools\make_docs.py     (build\docs_out: README.html, LICENSE.txt…)
 ; Keyin:  "%LOCALAPPDATA%\Programs\Inno Setup 6\ISCC.exe" build\yue.iss
 ; Natija: dist\Yue-<versiya>-setup.exe — administrator huquqi talab qilinmaydi.
 ; Jim o'rnatish: /VERYSILENT /SUPPRESSMSGBOXES /NORESTART [/TASKS="desktopicon"]
 
 #define AppName "Yue"
-#define AppVersion "1.0.0"
+#define AppVersion "1.0.1"
 #define AppPublisher "SnowCyberSecurity"
 ; Windows AppUserModelID — yue/__init__.py dagi APP_ID bilan bir xil
 #define AppUserModelID "Yue.DesktopCompanion"
@@ -79,14 +80,20 @@ Name: "autostart"; Description: "Windows bilan birga ishga tushirish"; GroupDesc
 
 [Files]
 Source: "..\dist\Yue\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\THIRD_PARTY_LICENSES.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\docs\yue.png"; DestDir: "{app}\docs"; Flags: ignoreversion
+; Hujjatlar .html va .txt — har qanday kompyuterda ochiladi (tools\make_docs.py)
+Source: "docs_out\README.html"; DestDir: "{app}"; Flags: ignoreversion
+Source: "docs_out\docs\yue.png"; DestDir: "{app}\docs"; Flags: ignoreversion
+Source: "docs_out\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "docs_out\THIRD_PARTY_LICENSES.txt"; DestDir: "{app}"; Flags: ignoreversion
+
+[InstallDelete]
+; 1.0.0 dagi eski nusxalar (.md va kengaytmasiz)
+Type: files; Name: "{app}\README.md"
+Type: files; Name: "{app}\LICENSE"
 
 [Icons]
 Name: "{autoprograms}\Yue"; Filename: "{app}\Yue.exe"; AppUserModelID: "{#AppUserModelID}"
-Name: "{autoprograms}\Yue — qo'llanma"; Filename: "{app}\README.md"
+Name: "{autoprograms}\Yue — qo'llanma"; Filename: "{app}\README.html"
 Name: "{autodesktop}\Yue"; Filename: "{app}\Yue.exe"; Parameters: "--toggle"; AppUserModelID: "{#AppUserModelID}"; Tasks: desktopicon
 
 [Registry]

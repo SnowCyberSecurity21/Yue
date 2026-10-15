@@ -20,7 +20,7 @@ Yue bepul dastur, shaxsiy foydalanish uchun.
 
 ## O'rnatish
 
-1. `Yue-1.0.0-setup.exe` ni ishga tushiring. Administrator huquqi kerak emas: dastur
+1. `Yue-1.0.1-setup.exe` ni ishga tushiring. Administrator huquqi kerak emas: dastur
    `%LOCALAPPDATA%\Programs\Yue` ga o'rnatiladi.
 2. **SmartScreen.** Windows "Windows kompyuteringizni himoya qildi" oynasini ko'rsatishi mumkin.
    Sababi — dasturda pullik kod imzosi yo'q. **Batafsil** → **Baribir ishga tushirish** ni bosing

@@ -251,8 +251,8 @@ def test_about_dialog_has_docs_and_privacy(controller):  # noqa: F811
     from yue.ui.about import AboutDialog
 
     dlg = AboutDialog()
-    texts = " ".join(w.text() for w in dlg.findChildren(type(dlg.doc_buttons["LICENSE"])))
-    assert set(dlg.doc_buttons) == {"README.md", "LICENSE", "THIRD_PARTY_LICENSES.txt"}
+    texts = " ".join(w.text() for w in dlg.findChildren(type(dlg.doc_buttons["LICENSE.txt"])))
+    assert set(dlg.doc_buttons) == {"README.html", "LICENSE.txt", "THIRD_PARTY_LICENSES.txt"}
     assert t("about.readme") in texts
     from PySide6.QtWidgets import QLabel
 
@@ -274,3 +274,48 @@ def test_debug_menu_only_with_env(controller, monkeypatch):  # noqa: F811
     assert t("menu.debug") not in titles()
     monkeypatch.setenv("YUE_DEBUG", "1")
     assert t("menu.debug") in titles()
+
+
+# --- hujjatlar har qanday kompyuterda ochiladi ----------------------------------------------------
+
+
+def test_readme_html_keeps_text_and_image(qapp):
+    from yue import docs
+
+    md = (paths.RES / "README.md").read_text(encoding="utf-8")
+    page = docs.markdown_to_html(md)
+    assert page.startswith("<!DOCTYPE html>") and "max-width: 800px" in page
+    assert 'src="docs/yue.png"' in page  # xom <img> qatori o'rniga o'z rasmimiz
+    for text in ("Windows 10 yoki 11", "Tez-tez uchraydigan muammolar", "Ctrl+Alt+Shift+U"):
+        assert text in page, text
+
+
+def test_docs_built_in_source_mode(qapp, tmp_path, monkeypatch):
+    from yue import docs
+
+    monkeypatch.setattr(paths, "APP_DIR", tmp_path / "yoq")  # o'rnatilmagan
+    monkeypatch.setattr(docs.tempfile, "gettempdir", lambda: str(tmp_path))
+    for name in (docs.README_HTML, docs.LICENSE_TXT, docs.THIRD_PARTY):
+        p = docs.doc_file(name)
+        assert p is not None and p.is_file() and p.parent == tmp_path / "yue-docs", name
+    assert (tmp_path / "yue-docs" / "docs" / "yue.png").is_file()
+
+
+def test_about_buttons_open_html_and_txt(controller, monkeypatch, tmp_path):  # noqa: F811
+    from yue import docs
+    from yue.ui import about
+
+    monkeypatch.setattr(docs.tempfile, "gettempdir", lambda: str(tmp_path))
+    opened = []
+    monkeypatch.setattr(about.QDesktopServices, "openUrl", lambda url: opened.append(url) or True)
+    dlg = about.AboutDialog()
+    for b in dlg.doc_buttons.values():
+        b.click()
+    names = sorted(u.toLocalFile().rsplit("/", 1)[-1] for u in opened)
+    assert names == ["LICENSE.txt", "README.html", "THIRD_PARTY_LICENSES.txt"]
+
+
+def test_installer_ships_html_and_txt():
+    iss = (paths.RES / "build" / "yue.iss").read_text(encoding="utf-8")
+    assert r'Filename: "{app}\README.html"' in iss and 'README.md"; DestDir' not in iss
+    assert "LICENSE.txt" in iss and "THIRD_PARTY_LICENSES.txt" in iss

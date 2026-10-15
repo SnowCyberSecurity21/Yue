@@ -1,5 +1,12 @@
 # O'zgarishlar
 
+## 1.0.1 — 2026-10-15
+
+- Qo'llanma endi `README.html`, litsenziya — `LICENSE.txt`: har qanday kompyuterda brauzer yoki
+  Bloknot bilan ochiladi (avval `.md` va kengaytmasiz fayl ochilmasligi mumkin edi). Start
+  menyusidagi "Yue — qo'llanma" va "Yue haqida" oynasidagi tugmalar shularni ochadi.
+- Yangilashda eski `README.md` va `LICENSE` o'rnatish papkasidan olib tashlanadi.
+
 ## 1.0.0 — 2026-10-15
 
 Birinchi ommaviy versiya.

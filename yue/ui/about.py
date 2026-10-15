@@ -6,23 +6,22 @@ from PySide6.QtCore import Qt, QUrl
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout
 
-from yue import __version__, paths
+from yue import __version__, docs, paths
 from yue.i18n import t
 from yue.ui.styles import app_icon, button, label
 
+# Har kompyuterda ochiladigan formatlar: .html va .txt (`yue.docs`)
 DOCS = (
-    ("about.readme", "README.md"),
-    ("about.license", "LICENSE"),
-    ("about.third_party", "THIRD_PARTY_LICENSES.txt"),
+    ("about.readme", docs.README_HTML),
+    ("about.license", docs.LICENSE_TXT),
+    ("about.third_party", docs.THIRD_PARTY),
 )
 
 
-def doc_path(name: str):
-    """O'rnatilgan dasturda — exe yonida, manba versiyada — loyiha ildizida."""
-    for folder in (paths.APP_DIR, paths.RES):
-        if (folder / name).is_file():
-            return folder / name
-    return None
+def open_doc(name: str) -> bool:
+    """Hujjatni standart dastur bilan ochish (manba versiyada — vaqtinchalik nusxasi)."""
+    path = docs.doc_file(name)
+    return path is not None and QDesktopServices.openUrl(QUrl.fromLocalFile(str(path)))
 
 
 class AboutDialog(QDialog):
@@ -44,11 +43,7 @@ class AboutDialog(QDialog):
         self.doc_buttons = {}
         for key, name in DOCS:
             b = button(t(key))
-            path = doc_path(name)
-            b.setEnabled(path is not None)
-            b.clicked.connect(
-                lambda _=False, p=path: p and QDesktopServices.openUrl(QUrl.fromLocalFile(str(p)))
-            )
+            b.clicked.connect(lambda _=False, n=name: open_doc(n))
             self.doc_buttons[name] = b
             row.addWidget(b)
         row.addStretch(1)

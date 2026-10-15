@@ -84,7 +84,18 @@ Hali ochiq:
 - Ctrl+Alt+Y: boshqalarda standart bo'lib qoladi. Sizning kompyuteringizda bu tugmani Nora "yaqin" uchun egallagan, shuning uchun Yue Sozlamalarida boshqa birikma qo'yiladi (masalan, Ctrl+Alt+Shift+Y).
 - GitHub'da private repo ochildi: SnowCyberSecurity21/Yue.
 - `docs\cc_yue_2.md`: 0–3-qismlar bajarildi va push qilindi (push, persona va iboralar, ovoz chegarasi, boshqalar uchun tayyorlash). 4-qism ("N" → "Y") yarmida to'xtatildi va bekor qilindi.
-- Keyingi qadam: `docs\cc_yue_3.md` — "N" → "Y" o'zgarishlarini orqaga qaytarish, sinov va 1.0.0 reliz.
+- `docs\cc_yue_3.md`: "N" → "Y" orqaga qaytarildi (hech narsa commit qilinmagan edi).
+- **1.0.0 chiqdi** (`v1.0.0` tegi): 1034 test o'tdi, setup ~86 MB, SHA256 `docs\release_1.0.0.md` da. Yangi foydalanuvchi sifatida faqat kalitsiz yo'l sinaldi.
+- Sinovda ikki xato topilib, Yue'da tuzatildi: vazifa iborasida {time}/{task} to'ldirilmasdi, "1 daqiqadan keyin" pastga yaxlitlanardi. Nora'ga ko'chirish `C:\nora\docs\cc_ovoz_chegara.md` ning C qismida.
+- Keyingi qadam: `docs\cc_yue_4.md` (1.0.1):
+  - qo'llanma README.html bo'lib ochiladi, LICENSE.txt;
+  - pack.json dagi "Nora" matnlari tekshiriladi;
+  - o'chirishdagi "ma'lumotlarni ham o'chiraymi?" savoli sinaladi.
+- Siz qo'lda tekshirasiz:
+  - ustani haqiqiy Gemini yoki Claude kaliti va ElevenLabs ovozi bilan;
+  - tashlanganda land va sayr oxiridagi wave gap bilan kesilmasligini;
+  - iboralarni bir o'qib chiqing.
+- Repo public bo'ladigan bo'lsa: git tarixidagi `docs\` da Nora laqabi bor, oldin tarixni tozalash yoki yangi repo kerak.
 - Repo private bo'lgani uchun GitHub Releases boshqalarga ko'rinmaydi. Setup fayli Telegram orqali yoki keyinroq ochiladigan alohida public repo orqali tarqatiladi.
 
 ## 4. Bosqichlar

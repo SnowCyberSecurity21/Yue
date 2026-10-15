@@ -36,10 +36,11 @@ Rasm va animatsiyalar manbasi Nora'da. Yue tayyor to'plamni ko'chirib oladi:
 ```powershell
 .venv\Scripts\pyinstaller build\yue.spec --noconfirm        # dist\Yue\Yue.exe
 .venv\Scripts\python tools\third_party.py                   # THIRD_PARTY_LICENSES.txt
+.venv\Scripts\python tools\make_docs.py                     # build\docs_out: README.html, LICENSE.txt…
 "%LOCALAPPDATA%\Programs\Inno Setup 6\ISCC.exe" build\yue.iss   # dist\Yue-<versiya>-setup.exe
 ```
 
-Versiya to'rt joyda: `yue/__init__.py`, `build/yue.iss`, `build/version_info.txt`, `CHANGELOG.md`.
+Versiya to'rt joyda: `yue/__init__.py`, `build/yue.iss`, `build/version_info.txt`, `CHANGELOG.md` (README dagi setup nomi ham).
 
 O'rnatuvchi administrator huquqisiz `%LOCALAPPDATA%\Programs\Yue` ga o'rnatadi. Nora bilan bir
 kompyuterda yonma-yon ishlaydi: ma'lumotlar papkasi, AppId, avtostart, lock va boshqaruv kanali
