@@ -48,6 +48,14 @@ def test_quick_parse(text, want):
     assert parse_quick(text, NOW) == want
 
 
+def test_relative_time_never_rounds_down():
+    from yue.tasks.timeparse import parse_user_time
+
+    late = dt.datetime(2026, 10, 15, 7, 53, 58)
+    assert parse_user_time("1 daqiqadan keyin", late) == ("2026-10-15 07:55", None)
+    assert parse_user_time("2 soatdan keyin", NOW) == ("2026-10-15 16:00", None)
+
+
 def test_quick_commands_work_without_ai(controller, monkeypatch):  # noqa: F811
     c = controller
     asked = []

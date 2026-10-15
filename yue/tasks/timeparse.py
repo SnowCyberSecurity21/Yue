@@ -108,7 +108,10 @@ def parse_user_time(text: str, now: dt.datetime) -> tuple[str | None, str | None
         delta = (
             dt.timedelta(hours=n) if rel.group(2).startswith("soat") else dt.timedelta(minutes=n)
         )
-        return fmt_due((now + delta).replace(second=0, microsecond=0)), None
+        due = now + delta
+        if due.second or due.microsecond:  # "1 daqiqadan keyin" — kamida 1 daqiqa (yuqoriga)
+            due = due.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+        return fmt_due(due), None
     if hm is None:
         return None
     day = now.date()

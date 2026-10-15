@@ -6,7 +6,7 @@
 ; Jim o'rnatish: /VERYSILENT /SUPPRESSMSGBOXES /NORESTART [/TASKS="desktopicon"]
 
 #define AppName "Yue"
-#define AppVersion "0.1.0"
+#define AppVersion "1.0.0"
 #define AppPublisher "SnowCyberSecurity"
 ; Windows AppUserModelID — yue/__init__.py dagi APP_ID bilan bir xil
 #define AppUserModelID "Yue.DesktopCompanion"
