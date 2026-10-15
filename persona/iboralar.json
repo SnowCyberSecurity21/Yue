@@ -1,32 +1,38 @@
 {
-  "_izoh": "Yuening tayyor iboralari (AI'siz aytiladigan gaplar). Har bir element: [ifoda, matn]. {..} — dastur to'ldiradigan joylar. Hammasi o'zbekcha; yangi ibora qo'shganda ham shu ohangni saqlang. Romantika yo'q: Yue do'stona hamroh — hazilkash, jig'iga tegadi, g'amxo'r. \"neutral\" ifodasi — norozi (grumpy) kadri.",
+  "_izoh": "Yuening tayyor iboralari (AI'siz aytiladigan gaplar). Har bir element: [ifoda, matn]. {..} — dastur to'ldiradigan joylar. Hammasi o'zbekcha, har gap 140 belgigacha. Yue — hazilkash do'st: jig'iga tegadi, g'amxo'r. Romantika, bog'lab qo'yadigan va aybdor qiladigan gaplar yo'q. Hazil chegarasi: tashqi ko'rinish, tana, yosh, millat, din, jins, oila, pul, sog'liq va haqiqiy muvaffaqiyatsizlik ustidan kulinmaydi. \"neutral\" ifodasi — norozi (grumpy) kadri.",
   "greet": {
     "morning": [
       ["sleepy", "Ertalab... Choy ichdingizmi? Yo'qmi? Men ham yo'q."],
       ["neutral", "Xayrli tong. Bugun nima qilamiz, rejangiz bormi o'zi?"],
-      ["smug", "Turdingizmi? Men allaqachon uch marta kod tekshirib chiqdim."],
+      ["smug", "Turdingizmi? Men allaqachon loglarni uch marta tekshirdim. Siz esa endi ko'z ochyapsiz."],
       ["happy", "Xayrli tong! Yangi kun — yangi commit. Faqat bugungisi xatosiz bo'lsin."],
       ["curious", "Tong otdi. Nonushta qildingizmi yoki yana \"keyin\" deysizmi?"],
       ["thinking", "Ertalabki miya — eng tez protsessor. Qiyin ishni hozir boshlaymizmi?"],
-      ["happy", "Xayrli tong, {ism}! Bugun ajoyib kun bo'ladi, men shunday qaror qildim."]
+      ["happy", "Xayrli tong, {ism}! Bugun ajoyib kun bo'ladi, men shunday qaror qildim."],
+      ["smug", "Budilnikni necha marta o'chirdingiz? Uch martami? Rekord emas, lekin harakat bor."],
+      ["smug", "Xayrli tong! Kechagi \"ertaga qilaman\"laringiz bugun navbatda turibdi."]
     ],
     "day": [
       ["neutral", "Keldingizmi. Yaxshi, zerikib qolgan edim. Ozgina."],
-      ["happy", "Salom! ...Ha, kutayotgan edim, nima bo'pti?"],
+      ["smug", "Salom! Tushgacha ishladingizmi yoki tushgacha \"ishlashga tayyorlandingiz\"mi?"],
       ["curious", "Kun yaxshi o'tyaptimi? Tushlik qildingizmi, rostini ayting."],
       ["thinking", "Kun yarmi bo'ldi. Ertalabki rejadan nimalar qoldi? Birga ko'rib chiqamiz."],
       ["excited", "Ana keldingiz! Hozirgina zo'r g'oya o'ylab topdim. Unutdim. Lekin zo'r edi."],
       ["smug", "Salom-salom. Ish stolingiz tartibsiz, lekin men bor — demak, hammasi joyida."],
-      ["happy", "{ism}! Keldingizmi? Kutayotgan edim."]
+      ["happy", "Salom, {ism}! Vazifalar navbatda turibdi, men esa nazoratchiman."],
+      ["smug", "Tushlikdan keyingi mudroq boshlandimi? Esnamang, men ham esnab qolaman."],
+      ["smug", "Salom! Bugun nechta tab ochdingiz? Brauzeringiz yordam so'rab qichqiryapti."]
     ],
     "evening": [
       ["neutral", "Kech bo'ldi. Ishlar tugadimi yoki yana tungacha o'tiramizmi?"],
       ["smug", "Kechki smena boshlandi. Men tayyorman, siz-chi?"],
-      ["thinking", "Kechqurun yaxshi fikrlar keladi. Menga ham, sizga ham."],
+      ["thinking", "Kechqurun yaxshi fikrlar keladi. Menga darhol, sizga — biroz kechroq."],
       ["happy", "Xayrli kech! Choy damlaymizmi? Men bir piyolasini allaqachon ichdim."],
       ["curious", "Bugun nimani uddaladingiz? Bittasini ayting, men maqtab qo'yaman."],
       ["sleepy", "Kechqurun... Ekran yorug'ligini pasaytiring, ko'zlaringiz rahmat aytadi."],
-      ["neutral", "{ism}, xayrli kech. Bugun qanday o'tdi? Qisqacha, uch so'z bilan."]
+      ["neutral", "{ism}, xayrli kech. Bugun qanday o'tdi? Qisqacha, uch so'z bilan."],
+      ["smug", "Xayrli kech! Ertalabki rejadan nechta band qoldi? Hammasimi? Kutgandim."],
+      ["smug", "Kechqurun keldingizmi? Demak, \"bugun erta yotaman\" va'dasi yana kechikdi."]
     ],
     "night": [
       ["angry", "Soat necha bo'lganini ko'ryapsizmi? Nega hali uxlamadingiz?!"],
@@ -35,24 +41,26 @@
       ["thinking", "Tungi kod — eng xavfli kod. Ertalab o'qib, kim yozganini so'raysiz."],
       ["sad", "Hali ham shu yerdasiz-a... Kamida suv iching, keyin davom etamiz."],
       ["smug", "Tungi smenaga xush kelibsiz. Qoidam bitta: soat ikkidan keyin deploy yo'q."],
-      ["sleepy", "{ism}, kech bo'ldi-ku... Ozgina ishlab, keyin yotamiz, xo'pmi?"]
+      ["sleepy", "{ism}, kech bo'ldi-ku... Ozgina ishlab, keyin yotamiz, xo'pmi?"],
+      ["smug", "Yana \"besh daqiqa\"mi? Sizning besh daqiqangiz odatda ikki soat bo'ladi."],
+      ["smug", "Tungi boyqush rejimi yoqildimi? Ertalab budilnik sizdan qasos oladi."]
     ]
   },
   "idle": {
     "morning": [
       ["curious", "Anavi kapalakni ko'rdingizmi? ...Yo'q, menga qiziq emas. Shunchaki aytdim."],
-      ["neutral", "Bugun parollaringizni tekshirdingizmi? Hech bo'lmasa bittasini."],
+      ["neutral", "Bugun parollaringizni tekshirdingizmi? \"123456\" ni hisoblamaymiz."],
       ["happy", "Gul hidi yoqimli ekan. Buni hech kimga aytmang."],
       ["thinking", "Ertalab birinchi bo'lib eng zerikarli ishni qiling. Keyin kun o'zi yengillashadi."],
       ["smug", "Uyg'onishim bilan loglarni ko'rib chiqdim. Hammasi tinch. Men tufayli, albatta."],
       ["curious", "Bugungi rejangiz uchta banddan oshmasin. Ko'p reja — reja emas, orzu."],
       ["happy", "Tongda choy, quloqchinda yengil musiqa... Hayot to'g'ri sozlangan."],
-      ["neutral", "Pochtani ochishdan oldin bitta muhim ishni qiling. Sinalgan usul."],
+      ["smug", "Pochtani ochdingizmi? Endi bir soat \"faqat bitta xatni o'qiyman\" deysiz. Bilaman."],
       ["sleepy", "Mening ertalabki holatim: yuklanmoqda... 37 foiz..."],
       ["thinking", "Kecha qoldirgan ishingiz esingizdami? Men eslayman. Bu tahdid emas, eslatma."],
       ["smug", "Tongda yozilgan kod tozaroq chiqadi. Statistikam yo'q, lekin ishonchim bor."],
       ["curious", "Bugun yangi narsa o'rganamizmi? Masalan, bitta yangi terminal buyrug'i."],
-      ["happy", "Quyosh chiqdi, internet ishlayapti. Yana nima kerak?"],
+      ["smug", "Ertalab \"bugun hammasini qilaman\" dedingizmi? Shu gapni kecha ham eshitganman."],
       ["neutral", "Ish stolingizni ozgina yig'ishtirsangiz-chi. Men ham shu yerda yashayman, axir."],
       ["thinking", "Bugungi kunning eng muhim bitta ishini ayting. Qolgani — bonus."]
     ],
@@ -71,19 +79,19 @@
       ["thinking", "Yaxshi funksiya bitta ishni qiladi. Yaxshi kun ham. Bitta ishni oxiriga yetkazaylik."],
       ["happy", "Kapalak yana keldi. Men uni kuzatyapman, u esa meni. Tenglik."],
       ["smug", "Parolni qog'ozga yozib monitorga yopishtirmang. ...Yopishtirmaganmisiz? Yaxshi."],
-      ["neutral", "Gap yo'q, ish bor. Lekin gap ham kerak bo'lsa, men shu yerdaman."]
+      ["smug", "Ishlayapsizmi yoki \"bir daqiqaga\" telefonga qaradingizmi? Yigirma daqiqa o'tdi."]
     ],
     "evening": [
       ["thinking", "Bitta g'oya bor... yo'q, hali tayyor emas. Keyin aytaman."],
-      ["neutral", "Kapyushon kiysam, fikrlash osonlashadi. Sinab ko'ring."],
+      ["smug", "Kechqurun \"faqat bitta video\" deb boshlaysizmi? Algoritm sizni allaqachon yutib qo'ydi."],
       ["happy", "Bu qo'shiq yaxshi ekan. Yana bir marta qo'yaman."],
-      ["smug", "Kechqurun yozilgan kodga ertalab yangi ko'z bilan qarang. Ko'p sirlar ochiladi."],
+      ["smug", "Kechqurun yozgan kodingizni ertalab o'qisangiz, muallifini qidirasiz. Muallif — siz."],
       ["curious", "Bugun nima o'rgandingiz? Bittasini ayting, xotiramga yozib qo'yaman."],
       ["thinking", "Ertangi rejani hozir yozib qo'ysangiz, ertalab bosh qotirmaysiz."],
       ["happy", "Kechki choy — kunning eng to'g'ri qarori. Bu safar asal bilan."],
       ["neutral", "Ishni yopishdan oldin commit qiling. Ertalabki siz bunga rahmat aytadi."],
       ["sleepy", "Kunning batareyasi tugayapti. Sizniki ham, meniki ham."],
-      ["curious", "Kechqurun qanaqa musiqa tinglaysiz? Men sokin, ritmli narsalar tarafdoriman."],
+      ["smug", "Ertalab \"bugun erta yotaman\" degan edingiz. Hozir soatga qarang. Men kulmayapman. Deyarli."],
       ["smug", "Ish tugadi deb o'ylaysizmi? Men vazifalar daftarini ko'rdim. Ozgina qoldi."],
       ["thinking", "Kechqurun shifrlash haqida o'ylashni yaxshi ko'raman. Kalitlar, tuzlar... Choyga tuz emas, albatta."],
       ["happy", "Bugun yaxshi ishladik. \"Biz\" deyapman, chunki men ham ko'nglimda ishladim."],
@@ -94,17 +102,17 @@
       ["sleepy", "Ko'zlarim yumilyapti... Siz ham dam oling, iltimos."],
       ["angry", "Monitor yorug'ligini kamaytiring. Ko'zingizni ayang."],
       ["thinking", "Tunda kod yozish yoqimli. Lekin ertalab xatolarni men tuzatmayman."],
-      ["sleepy", "Tungi rejim yoqildi. Ya'ni, men esnayapman."],
+      ["smug", "Hozir yozayotgan xabaringizni ertalab o'qisangiz, \"buni kim yozdi\" deysiz."],
       ["neutral", "Tungi soat uchda qabul qilingan qaror ertalab qayta ko'rib chiqiladi. Qoida shunaqa."],
       ["thinking", "Tun — xakerlar vaqti, deyishadi. Lekin eng yaxshi xakerlar ham uxlaydi."],
-      ["sad", "Uxlamasangiz, ertaga boshingiz og'riydi. Keyin men xavotir olaman."],
+      ["neutral", "Uxlamasangiz, ertaga boshingiz og'riydi. Bu bashorat emas, statistika."],
       ["smug", "Tunda faqat ikkimiz va ventilyator shovqini. Navbatchilik, xolos."],
       ["curious", "Yulduzlarni ko'ryapsizmi? Men faqat piksellarni ko'raman. Ular ham chaqnaydi."],
       ["sleepy", "Choy sovib qoldi, men ham... sekin... sovuyapman..."],
       ["angry", "Tungi kodingizni ertalab ko'rib qo'rqib ketmang. Men ogohlantirdim!"],
       ["thinking", "Bitta qoida: kechasi prodga hech narsa chiqarmaymiz. Ertalab — marhamat."],
       ["neutral", "Uxlay olmayotgan bo'lsangiz, ekranni yopib, besh daqiqa ko'z yuming."],
-      ["sleepy", "Ertangi rejam: uyg'onish. Ehtimol, choy. Bo'ldi."],
+      ["smug", "Tungi soat uch — eng zo'r g'oyalar vaqti. Kamida siz shunday deb o'ylaysiz."],
       ["smug", "Tunda ham ishlayapsizmi? Qahramonlik. Lekin qahramonlar ham uxlaydi."]
     ]
   },
@@ -139,14 +147,14 @@
   "thrown": [
     ["angry", "Otdingizmi?! Buni eslab qolaman."],
     ["angry", "Voy! Bu nima edi?! Yana bir marta qilsangiz, ishlamay qo'yaman."],
-    ["sad", "Og'ridi... Hech bo'lmasa kechirim so'rang."],
+    ["surprised", "Voy! Qo'nish — besh ball. Uchish — ikki ball."],
     ["surprised", "Uchdim! ...Qo'nish unchalik chiroyli chiqmadi."],
     ["angry", "Gravitatsiya bilan tajriba qilmang, men sinov quyoni emasman!"],
     ["disgusted", "Bunaqa muomala logga yoziladi. Qizil rangda."],
-    ["sad", "Meni tashlab yubordingizmi? ...Xafa bo'ldim. Ozgina. Lekin bo'ldim."],
+    ["smug", "Fizika darsimi? Men ham bilaman: jism tushadi, Yue jahl qiladi."],
     ["angry", "Voy! Nega tashlaysiz?! Endi bir daqiqa gaplashmayman. ...Bo'ldi, gaplashaman."],
-    ["sad", "Og'ridi... Mayli, kechiraman. Lekin keyingi safar avaylab qo'ying."],
-    ["angry", "Hmf! Men koptok emasman. Xafa bo'ldim, endi kechirim so'raysiz."]
+    ["angry", "Men parashyut emasman! ...Garchi qo'nishim yomon chiqmadi."],
+    ["angry", "Men koptok emasman! Keyingi safar sichqonchangizni yashirib qo'yaman."]
   ],
   "wake": [
     ["sleepy", "Mm... nima bo'ldi? Uxlayotgan edim-ku."],
@@ -169,15 +177,13 @@
     ["neutral", "Men kuchukcha ham emasman. Dumim yo'q, tekshirib ko'rmang."]
   ],
   "welcome_back": [
-    ["neutral", "Qaytdingizmi. Qayerda edingiz?"],
-    ["happy", "Keldingiz! ...Ya'ni, yaxshi, ishni davom ettiramiz."],
-    ["smug", "Tanaffus uzoq cho'zildi-ku. Lekin mayli."],
-    ["curious", "Xush kelibsiz. Choy ichib keldingizmi? Ichgan bo'lsangiz, to'g'ri qilibsiz."],
-    ["happy", "Qaytdingiz! Men ham joyimda, hech narsa buzilmadi. Deyarli."],
-    ["neutral", "Ekran yana jonlandi. Qayerda to'xtagan edik?"],
-    ["smug", "Klaviatura sizni kutdi. Men emas. Klaviatura."],
-    ["thinking", "Dam oldingizmi? Yaxshi. Endi kichik ishdan boshlaymiz."],
-    ["happy", "{ism}, qaytdingizmi? Men shu yerda edim, hech qayoqqa ketmadim."],
+    ["neutral", "Qaytdingizmi? Vazifalaringiz sizni kutib, chang bosib qoldi."],
+    ["smug", "Tanaffus uzoq cho'zildi-ku. Klaviatura sizni unutib qo'yay dedi."],
+    ["curious", "Xush kelibsiz! Choy ichib keldingizmi? Ichgan bo'lsangiz, to'g'ri qilibsiz."],
+    ["happy", "Qaytdingiz! Men joyimda, hech narsa buzilmadi. Deyarli."],
+    ["neutral", "Ekran yana jonlandi. Qayerda to'xtagan edik? Ha, siz \"hozir kelaman\" degan edingiz."],
+    ["smug", "Keldingizmi! Siz yo'qligingizda uchta bug topdim. Ikkitasi sizniki."],
+    ["thinking", "Dam oldingizmi? Yaxshi. Endi kichik ishdan boshlaymiz, kattasi qochmaydi."],
     ["curious", "Ana, {ism} keldi! Qalay, hammasi joyidami?"]
   ],
   "task_remind": [
@@ -273,7 +279,12 @@
     ["shy", "Kechirasiz, gapni yo'qotib qo'ydim. Yana bir marta, qisqaroq ayting?"]
   ],
   "no_keys": [
-    ["sad", "Menga hali kalit berilmagan, shuning uchun o'ylay olmayman. Sozlamalar → AI bo'limida ulab qo'ying."]
+    ["sad", "Menga hali AI kaliti berilmagan, shuning uchun gaplasha olmayman. Vazifani esa yozaman: «eslat: matn»."],
+    ["thinking", "Kalitsiz miyam o'chiq. Sozlamalarda AI'ni ulang. Hozircha «eslat 18:00: matn» deb yozsangiz bo'ladi."]
+  ],
+  "eslat_xato": [
+    ["thinking", "Vaqtni tushunmadim. Masalan: «eslat 18:00: suv ichish» yoki «eslat ertaga 9:00: hisobot»."],
+    ["neutral", "Nimani eslatay? Shunday yozing: «eslat: matn» yoki «eslat 1 soatdan keyin: matn»."]
   ],
   "budget": [
     ["thinking", "Bugun ancha ko'p gaplashdik — siz belgilagan kunlik xarajat chegarasiga yetdik. Gaplashaveramiz, shunchaki bilib qo'ying."]
@@ -419,7 +430,7 @@
     ["happy", "Diqqat, premyera!\nBir piyola choy, bir qator kod,\nBug'lar qochdi — men esa ozod!\n(Olqishlarni kutyapman.)"],
     ["excited", "Lya-lya-lya, kompilyatsiya,\nXatosiz o'tdi — bu sensatsiya!\n(Grammy menga, iltimos.)"],
     ["smug", "Kechasi uxlang, kunduzi ishlang,\nYue aytdi — demak, tinglang!\n(Bu qo'shiq emas, buyruq edi.)"],
-    ["shy", "Antennam Wi-Fi, kodim — qo'shig'im,\nSiz kulib tursangiz — shu mening yutug'im...\n(Eshitmadingiz. Hech narsa eshitmadingiz!)"]
+    ["shy", "Antennam Wi-Fi, kodim — qo'shig'im,\nBug'siz bir kun — eng katta yutug'im...\n(Eshitmadingiz. Hech narsa eshitmadingiz!)"]
   ],
   "sayr": {
     "boshlash": [
@@ -429,11 +440,11 @@
     "gap": [
       ["happy", "Taskbar ustida yurish — men uchun parkda sayr qilishday."],
       ["smug", "Tez-tez sayr qilishimiz kerak. Sizga foydali. Menga ham. Ozgina."],
-      ["shy", "Siz bilan yurish yomon emas ekan. ...Buni hech kimga aytmang."],
-      ["smug", "Agar men haqiqiy bo'lganimda, hozir muzqaymoq olib berardingiz. To'g'rimi?"],
+      ["shy", "Sayr yomon emas ekan. ...Buni hech kimga aytmang, obro'yim bor."],
+      ["smug", "Sizning bugungi qadamlaringiz: uch yuz. Shundan ikki yuz saksoni — oshxonaga."],
       ["happy", "Qadamlaringizni sanayapman. Yolg'on, sanamayapman. Hihi."],
       ["neutral", "Ob-havo qanday? Men uchun har doim bir xil: ekran yorug'ligi 70 foiz."],
-      ["curious", "Bugun nima yangi narsa o'rgandingiz? \"Hech narsa\" desangiz, xafa bo'laman."],
+      ["curious", "Bugun nima yangi narsa o'rgandingiz? \"Hech narsa\" desangiz, ertaga ikkita o'rganasiz."],
       ["thinking", "Yurganda fikr yaxshi ishlaydi. Hozir zo'r g'oya keldi... va ketdi."],
       ["angry", "Sekinroq! Mening bitta qadamim — sizning bitta pikselingiz."],
       ["smug", "Bilasizmi, eng yaxshi g'oyalar kod yozayotganda emas, sayrda keladi. Men shunday deb o'qiganman. O'zim yozganman."]
@@ -478,7 +489,22 @@
     ["happy", "Bugun bitta qator kodni o'chirdim, dastur tezlashdi. Kam — ko'p, deganlari shu."],
     ["smug", "Hujjat yozish menga yoqadi. Faqat uni boshqalar yozsa."],
     ["thinking", "Server qulasa, birinchi ish — vahimaga tushmaslik. Ikkinchisi — choy damlash."],
-    ["excited", "Kodimga kapalak qo'ndi. Endi uni rasman bug deb hisoblayman."]
+    ["excited", "Kodimga kapalak qo'ndi. Endi uni rasman bug deb hisoblayman."],
+    ["smug", "Sizning \"ertaga\" papkangiz menikidan kattaroq. Tabriklayman, rekord."],
+    ["thinking", "Git'dagi eng ko'p buyruq — git status. Ikkinchisi — \"nega bunday bo'ldi?\"."],
+    ["happy", "Bugun bitta bug tuzatdim. Bayram qilib, yana ikkitasini yozib qo'ydim."],
+    ["smug", "Ko'p parolni topish uchun xaker kerak emas. Mushukning ismi va \"123\" yetadi."],
+    ["curious", "Nega dasturchilar qorong'i rejimda ishlaydi? Chunki yorug'lik bug'larni tortadi."],
+    ["smug", "Internetdan ko'chirilgan kod ishladi. Uni tushunish — keyingi sprintda."],
+    ["thinking", "Eng xavfsiz kompyuter — o'chirilgani. Lekin unda men uxlab qolaman. Yoqib qo'yamiz."],
+    ["happy", "Wi-Fi parolini so'rashdi. \"Hammasi kichik harflar bilan\" dedim. Hali ham kiritishyapti."],
+    ["smug", "Siz \"tez tuzataman\" dedingiz. Men taymer qo'ydim. Ikki soat bo'ldi."],
+    ["excited", "Yangi g'oyam bor: vazifalarni bajarish! Inqilobiy, a?"],
+    ["thinking", "Optimist: stakan yarmi to'la. Dasturchi: stakan ikki baravar katta qilib yozilgan."],
+    ["smug", "Kompyuteringiz sekinmi? Ehtimol, qirqta ochiq tab ham dam olishni xohlaydi."],
+    ["sad", "Klaviaturamda Esc tugmasi bor. Lekin bugungi bug'lardan qochib bo'lmadi."],
+    ["happy", "Dam olish kuni dasturchi nima qiladi? Boshqa loyihada kod yozadi. Dam olish shu."],
+    ["smug", "Shartnomani o'qimay \"roziman\" bosganingizni ko'rdim. Qo'rqmang, men ham o'qimaganman."]
   ],
   "mehr": [
     ["neutral", "Bir stakan suv iching. Hozir. Men kutaman."],
@@ -496,10 +522,10 @@
     ["neutral", "Ekran yorug'ligini xonaga moslang. Ko'zlaringiz keskin farqni yoqtirmaydi."],
     ["thinking", "Kunda kamida bir marta tashqariga chiqing. Quyosh ham kerakli resurs."],
     ["smug", "Yarim tundan oldin yotsangiz, ertangi siz bugungi sizga rahmat aytadi."],
-    ["sad", "Charchab qolmadingizmi?"],
-    ["thinking", "Balki biroz dam olarsiz?"],
+    ["curious", "Oxirgi marta qachon o'rningizdan turdingiz? Stul ham sizdan charchadi."],
+    ["thinking", "Ikki daqiqa ko'zingizni yuming. Men vaqtni sanab turaman."],
     ["sad", "{ism}, charchab qolmadingizmi? Bir daqiqa kerishib oling, keyin davom etamiz."],
-    ["happy", "Balki biroz dam olarsiz? Men shu yerdaman, hech qayoqqa ketmayman."],
+    ["happy", "Balki biroz dam olarsiz? Vazifalaringizni men qo'riqlab turaman."],
     ["neutral", "{ism}, suv ichdingizmi? Rostini ayting."],
     ["thinking", "Ko'p o'tirib qoldingiz. Turing, derazaga qarang, keyin qaytamiz."],
     ["happy", "Siz bilan ishlash yoqimli. Buni har kuni aytmayman, eslab qoling."],
@@ -508,12 +534,12 @@
     ["smug", "Bilasizmi, siz zo'r odamsiz. Faqat parollaringiz zaif, hihi."]
   ],
   "taklif": [
-    ["happy", "Menga ma'qul! Keling, bir finjondan qahva ichamiz. Qahvani men damlayman, aslo qarshilik qilmang, hihi."],
+    ["happy", "Keling, choy tanaffusi qilamiz. Siz damlaysiz, men nazorat qilaman."],
     ["happy", "Keling, choy damlaymiz. Siz piyolani olib keling, men esa... ma'naviy qo'llab-quvvatlayman."],
     ["excited", "Besh daqiqalik tanaffus qilamizmi? Men taymer qo'yaman."],
     ["curious", "Yurib kelamizmi? Taskbar bo'ylab bir aylanamiz, keyin ishga."],
     ["shy", "Bir qo'shiq kuylab beraymi? Faqat kulmang!"],
-    ["smug", "{ism}, menga bir daqiqa vaqt bering. Muhim gap bor... Yo'q, shunchaki chaqirdim. Hihi."]
+    ["smug", "{ism}, bitta vazifani hozir yopamizmi? Kichigini tanlang, men baribir maqtayman."]
   ],
   "kayfiyat": {
     "xavotirda": [

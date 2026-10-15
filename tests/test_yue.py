@@ -117,7 +117,7 @@ def test_removed_relation_files():
 MIN_LINES = {
     "listen": 8, "thinking": 6, "drag": 8, "thrown": 6, "wake": 6, "pat": 10, "welcome_back": 8,
     "goodbye": 6, "break": 8, "task_remind": 5, "task_added": 5, "task_done": 6, "tasks_empty": 4,
-    "hazil": 30, "mehr": 25, "taklif": 6, "offline_taklif": 2, "ollama_ishlamayapti": 2,
+    "hazil": 45, "mehr": 25, "taklif": 6, "offline_taklif": 2, "ollama_ishlamayapti": 2,
 }  # fmt: skip
 MIN_SUB = {("kayfiyat", s): 5 for s in ("xavotirda", "gururli", "charchagan")} | {
     ("manba", "online"): 2, ("manba", "offline"): 2, ("ovoz", "chegara"): 2,
@@ -149,6 +149,20 @@ def test_iboralar_schema_and_minimums():
         assert len(lines.options(key)) >= n, key
     for (key, sub), n in MIN_SUB.items():
         assert len(lines.options(key, sub)) >= n, (key, sub)
+
+
+def test_iboralar_quality():
+    lines = Lines.load()
+    texts = [x for x in lines.all_texts() if x != lines.data["about"]]
+    assert all(len(x) <= 140 for x in texts), [x for x in texts if len(x) > 140]
+    fillers = [x for x in texts if re.search(r"(hihi|pff|hmf)", x, re.I)]
+    assert len(fillers) <= len(texts) // 10
+    assert len(lines.options("pat")) == 10 and len(lines.options("welcome_back")) == 8
+    assert any("mushuk emasman" in x for _, x in lines.options("pat"))
+    clingy = re.compile(
+        r"kutayotgan edim|sizni kutdim|sog'indim|tashlab ketdingiz|kechirim so'ra", re.I
+    )
+    assert not [x for x in texts if clingy.search(x)]
 
 
 def test_last_five_not_repeated():
