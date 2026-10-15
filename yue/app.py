@@ -41,6 +41,8 @@ from yue.pet.sprites import SpriteStore
 from yue.pet.wardrobe import PERIODS, Overrides, Period, Wardrobe
 from yue.pet.window import PetWindow
 from yue.platform import Platform, get_platform
+from yue.quick import Quick
+from yue.quick import parse as parse_quick
 from yue.ui.bubble import Bubble
 from yue.ui.menu import TaskDialog, fill_menu
 from yue.ui.styles import app_icon, apply_app_style, inform, tray_icon
@@ -62,6 +64,7 @@ AUTO_LINE_GAP = 5 * 60  # avtomatik gaplar orasidagi eng kam vaqt (s)
 TYPING_IDLE = 3.0  # foydalanuvchi hozir yozyapti — bezovta qilinmaydi
 AWAY_IDLE = 10 * 60  # shundan uzoq jim — kompyuter yonida emas
 AUTOSTART_DELAY_S = 15
+NO_KEYS_GAP = 10 * 60  # kalitsiz rejim: to'liq no_keys iborasi shundan tez-tez takrorlanmaydi
 INSTANCE_RETRY_S = 3.0  # qulf band, kanal hali yo'q: shuncha vaqt buyruq yuborishga urinamiz
 OUTFIT_LINE_MS = 2500  # "kiyinib olay" iborasidan keyin harakat iborasi
 # Raqs: pack.json da "dance" sloti bo'lmasa — vaqtinchalik ketma-ketlik (~8 s)
@@ -119,6 +122,7 @@ class Controller(QObject):
         self.lines = Lines.load()
         self.commands = Commands.load()
         self._fast_cmd: tuple[str, float] | None = None  # AI'siz tanilgan buyruq (nom, vaqt)
+        self._no_keys_at: float | None = None  # oxirgi to'liq no_keys iborasi (monotonic)
         self._sayr_lines = UniquePicker()  # bitta sayr ichida gap takrorlanmaydi
         self._dance_gen = 0  # raqs ketma-ketligi: yangi buyruq eskisini to'xtatadi
         self.period_override: Period | None = None
@@ -401,6 +405,10 @@ class Controller(QObject):
         self.bubble.focus_input()
 
     def on_submit(self, text: str) -> None:
+        quick = parse_quick(text, dt.datetime.now())
+        if quick is not None:
+            self.apply_quick(quick)  # "eslat: …", "vazifalar" — AI'siz
+            return
         switch = recognize_mode(text)
         if switch is not None:
             self.apply_mode_switch(switch)  # kalit so'z AI'ga yuborilmaydi
@@ -410,6 +418,13 @@ class Controller(QObject):
         if spec is not None and spec.no_ai:
             # "hazil ayt" — AI'siz, darhol tayyor ibora (gapirish animatsiyasi bilan)
             self.say_text(*self.command_line(spec.name), auto_hide=not self.bubble.input_mode)
+            return
+        if not self.brain.has_ai():
+            if cmd is not None:  # harakat va uning iborasi — AI'siz ham
+                if self.run_command(cmd, source="fast") != "missing":
+                    self.say_text(*self.command_line(cmd), auto_hide=not self.bubble.input_mode)
+            else:
+                self._say_no_keys()
             return
         # Tanilgan buyruq navbatga qo'yilmaydi: javob bo'lmasa harakatning tayyor iborasi bor.
         if not self.brain.ask(text, enqueue=cmd is None):
@@ -427,6 +442,37 @@ class Controller(QObject):
             self.run_command(cmd, source="fast")  # AI javobini kutmasdan
         elif bh.sleeping and bh.command is not None:
             bh.wake(now)  # "uxla" buyrug'i — foydalanuvchi yana yozguncha
+
+    def apply_quick(self, quick: Quick) -> None:
+        keep = not self.bubble.input_mode
+        if quick.kind == "list":
+            self.brain.remind_open_tasks(force=True)
+            return
+        if quick.kind == "bad":
+            self.say_text(*self.lines.pick("eslat_xato"), auto_hide=keep)
+            return
+        applied = self.brain.book.add(quick.text, quick.due, quick.repeat)
+        if applied and applied.task:
+            self.brain.tasks_changed.emit()
+            self.say_text(*self.lines.pick("task_added", task=applied.task.text), auto_hide=keep)
+        else:
+            self.say_text(*self.lines.pick("eslat_xato"), auto_hide=keep)
+
+    def _say_no_keys(self) -> None:
+        """Kalitsiz (yoki Offline modelsiz): to'liq ibora va "Sozlamalarni ochish" tugmasi 10
+        daqiqada ko'pi bilan bir marta; oraliqda — qisqa ibora."""
+        now = time.monotonic()
+        keep = not self.bubble.input_mode
+        if self._no_keys_at is not None and now - self._no_keys_at < NO_KEYS_GAP:
+            self.say_text(*self.lines.pick("kalitsiz"), auto_hide=keep)
+            return
+        self._no_keys_at = now
+        if self.offline:
+            line, tab = ("thinking", t("notify.local_missing")), "local"
+        else:
+            line, tab = self.lines.pick("no_keys"), "ai"
+        self.say_text(*line, auto_hide=keep)
+        self.bubble.show_action(t("bubble.open_settings"), lambda: self.show_settings(tab))
 
     def _on_slow(self) -> None:
         if self.brain.busy and not self._got_token:
@@ -883,9 +929,9 @@ class Controller(QObject):
         self._open(dlg)
 
     def show_about(self) -> None:
-        inform(
-            None, t("about.title"), t("about.text", version=__version__, path=str(paths.data_dir()))
-        )
+        from yue.ui.about import AboutDialog
+
+        self._open(AboutDialog())
 
     def apply_settings(self, ai_changed: bool = False, autostart: bool | None = None) -> None:
         cfg = self.cfg

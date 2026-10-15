@@ -66,6 +66,7 @@ def test_not_mode_keywords(text):
 
 def _asked(c, monkeypatch):
     calls = []
+    monkeypatch.setattr(c.brain, "has_ai", lambda: True)
     monkeypatch.setattr(c.brain, "ask", lambda text, enqueue=True: calls.append(text) or True)
     return calls
 

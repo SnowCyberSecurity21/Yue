@@ -143,14 +143,19 @@ def test_settings_voice_tab_saves_key_protected(vc, qtbot):
     assert vc.voice.model == "eleven_v4_turbo"
 
 
-def test_settings_check_fills_yue_voice(vc, qtbot):
+def test_settings_check_lists_voices_and_choice_fills_id(vc, qtbot):
+    """Avtomatik tanlov yo'q: ro'yxat to'ladi, foydalanuvchi tanlasa — Voice ID maydoniga."""
     from yue.ui.settings import SettingsDialog
 
+    vc.cfg.set("voice.voice_id", "")
     dlg = SettingsDialog(vc, tab="voice")
     qtbot.addWidget(dlg)
     dlg._on_account({"used": 1000, "limit": 30000, "voices": [("x1", "Boshqa"), ("n1", "Yue")]})
-    assert dlg.v_voice_id.text() == "n1"
+    assert dlg.v_voice_id.text() == ""
+    assert [dlg.v_voices.itemData(i) for i in range(dlg.v_voices.count())] == ["", "x1", "n1"]
     assert "29000" in dlg.v_key.status.text()
+    dlg.v_voices.setCurrentIndex(2)
+    assert dlg.v_voice_id.text() == "n1"
 
 
 def test_stage_button_confirms_then_prepares(vc, qtbot, monkeypatch):

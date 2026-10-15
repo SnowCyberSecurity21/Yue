@@ -19,6 +19,8 @@ if FROZEN:
 else:
     RES = Path(__file__).resolve().parent.parent
 
+# Hujjatlar (README, LICENSE, THIRD_PARTY_LICENSES.txt): o'rnatilganda exe yonida
+APP_DIR = Path(sys.executable).parent if FROZEN else RES
 PERSONA_DIR = RES / "persona"
 PACKS_DIR = RES / "assets" / "packs"
 DEFAULT_PACK = PACKS_DIR / "yue"  # Nora'dan ko'chirilgan (tools/sync_pack.py)

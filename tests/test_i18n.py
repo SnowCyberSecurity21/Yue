@@ -47,10 +47,13 @@ TERMS_RE = re.compile(r"(?<![a-z])offline model[a-z']*", re.I)
 MODE_NAMES_RE = re.compile(r"(?<![A-Za-z])(?:Online|Offline)(?![A-Za-z])")
 # ElevenLabs saytidagi menyu yo'li ("ElevenLabs → Developers → …") — sayt tilida, aynan shunday
 SITE_PATH_RE = re.compile(r"ElevenLabs →[^.]*[.]")
+# Sayt tugmalari va ruxsat nomlari «…» ichida — sayt tilida, aynan shunday
+SITE_QUOTE_RE = re.compile(r"«[A-Za-z][^»]*»")
 
 
 def english_words(text: str) -> set[str]:
-    text = MODE_NAMES_RE.sub(" ", TERMS_RE.sub(" ", SITE_PATH_RE.sub(" ", text)))
+    text = SITE_QUOTE_RE.sub(" ", SITE_PATH_RE.sub(" ", text))
+    text = MODE_NAMES_RE.sub(" ", TERMS_RE.sub(" ", text))
     text = TECH_RE.sub(" ", URL_RE.sub(" ", text))
     words = {w.lower().strip("'’ʻʼ") for w in WORD_RE.findall(text)}
     return {w for w in words if w in ENGLISH and w not in WHITELIST}

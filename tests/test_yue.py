@@ -278,6 +278,7 @@ def test_relation_keywords_go_to_ai(controller, monkeypatch, text):  # noqa: F81
     """Munosabat kalit so'zlari yo'q: oddiy xabar sifatida AI'ga ketadi."""
     c = controller
     calls = []
+    monkeypatch.setattr(c.brain, "has_ai", lambda: True)
     monkeypatch.setattr(c.brain, "ask", lambda tx, enqueue=True: calls.append(tx) or True)
     c.on_submit(text)
     assert calls == [text]

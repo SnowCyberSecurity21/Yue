@@ -35,7 +35,7 @@ DEFAULTS: dict[str, Any] = {
     "ai": {
         "manba": "online",  # online — faqat bulut (Claude, Gemini, OpenRouter); offline — Ollama
         "primary": "claude",  # asosiy provayder: claude / gemini / openrouter
-        "mode": "smart",  # suhbat: smart — Sonnet (yoki Gemini 3.8) birinchi; fast — Haiku birinchi
+        "mode": "fast",  # fast — Haiku birinchi (standart); smart — Sonnet (yoki Gemini 3.8)
         "openrouter_model": "meta-llama/llama-3.3-70b-instruct",  # kalit — `secrets.openrouter_key`
         "local_model": "",  # Offline: Ollama modeli (`/api/tags` dan tanlanadi)
     },

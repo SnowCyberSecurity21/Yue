@@ -56,7 +56,7 @@ CLAUDE_KEYS_URL = "https://platform.claude.com/settings/keys"
 GEMINI_KEYS_URL = "https://aistudio.google.com/apikey"
 OPENROUTER_KEYS_URL = "https://openrouter.ai/settings/keys"
 ELEVENLABS_KEYS_URL = "https://elevenlabs.io/app/settings/api-keys"
-VOICE_NAME = "yue"  # "Tekshirish": voice_id bo'sh bo'lsa, shu nomli ovoz tanlanadi
+OLLAMA_URL = "https://ollama.com/download"
 CHECK_GEMINI_MODEL = "gemini-3.1-flash-lite"
 SCREEN_SHARE = 0.85  # oyna boshlang'ich balandligi — ekranning shu qismidan oshmaydi
 
@@ -287,7 +287,7 @@ class SettingsDialog(QDialog):
         f.addRow(label(t("ai.primary")), self.primary)
         self.mode = _combo(
             [(t("ai.mode.smart"), "smart"), (t("ai.mode.fast"), "fast")],
-            cfg.get("ai.mode", "smart"),
+            cfg.get("ai.mode", "fast"),
         )
         f.addRow(label(t("ai.mode")), self.mode)
         saved_or = str(cfg.get("ai.openrouter_model", "") or "") or OPENROUTER_DEFAULT
@@ -565,6 +565,16 @@ class SettingsDialog(QDialog):
         self.v_key.get_saved_key = lambda: secrets.get(VOICE_SECRET)
         self.v_key.check_override = voice.check_account
         f.addRow(label(t("voice.key")), self.v_key)
+        f.addRow("", label(t("voice.perms"), muted=True))
+        vrow = QHBoxLayout()
+        self.v_voices = QComboBox()
+        self.v_voices.addItem(t("voice.voices.empty"), "")
+        self.v_voices.currentIndexChanged.connect(self._voice_chosen)
+        vrow.addWidget(self.v_voices, 1)
+        refresh = button(t("voice.voices.refresh"))
+        refresh.clicked.connect(self._refresh_voices)
+        vrow.addWidget(refresh)
+        f.addRow(label(t("voice.voices")), vrow)
         self.v_voice_id = QLineEdit(voice.voice_id)
         self.v_voice_id.setMaxLength(64)
         self.v_voice_id.setPlaceholderText(t("voice.voice_id.placeholder"))
@@ -758,15 +768,17 @@ class SettingsDialog(QDialog):
             self.v_key._checked(text)
             return
         used, total = int(res.get("used", 0)), int(res.get("limit", 0))
-        text = t("voice.check.ok", left=max(0, total - used), total=total)
-        if not valid_voice_id(self.v_voice_id.text().strip()):  # bo'sh yoki noto'g'ri
-            found = [(i, n) for i, n in res.get("voices", []) if n.strip().casefold() == VOICE_NAME]
-            if found:
-                self.v_voice_id.setText(found[0][0])
-                text += "\n" + t("voice.check.found", name=found[0][1])
-            else:
-                text += "\n" + t("voice.check.no_voice")
-        self.v_key._checked(text)
+        self.v_key._checked(t("voice.check.ok", left=max(0, total - used), total=total))
+        fill_voices(self.v_voices, res.get("voices", []), self.v_voice_id.text().strip())
+
+    def _refresh_voices(self) -> None:
+        """Ovozlar ro'yxatini yangilash (kalit tekshiruvi bilan birga)."""
+        self.v_key._check()
+
+    def _voice_chosen(self, _i: int) -> None:
+        vid = self.v_voices.currentData()
+        if vid:
+            self.v_voice_id.setText(vid)
 
     def _add_tab(self, w: QWidget, key: str) -> None:
         scroll = QScrollArea()
@@ -882,3 +894,15 @@ class SettingsDialog(QDialog):
             autostart=self.autostart.isChecked(),
         )
         self.accept()
+
+
+def fill_voices(combo: QComboBox, voices: list, current: str) -> None:
+    """Ovozlar ro'yxati (GET /v1/voices); joriy voice_id bo'lsa — tanlanadi."""
+    combo.blockSignals(True)
+    combo.clear()
+    combo.addItem(t("voice.voices.choose") if voices else t("voice.voices.none"), "")
+    for vid, name in voices:
+        combo.addItem(name or vid, vid)
+        if vid == current:
+            combo.setCurrentIndex(combo.count() - 1)
+    combo.blockSignals(False)

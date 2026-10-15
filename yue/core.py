@@ -209,6 +209,10 @@ class Brain(QObject):
             log.warning("API kalitlari ochilmadi (DPAPI)")
             return None, None, None
 
+    def has_ai(self) -> bool:
+        """Zanjirda kamida bitta maqsad bor (kalit yoki Offline model)."""
+        return bool(self.router.targets)
+
     @property
     def offline(self) -> bool:
         """AI manbasi Offline (faqat Ollama)."""
@@ -246,7 +250,7 @@ class Brain(QObject):
             gemini_key,
             gemini_paid=bool(self.cfg.get("ai.gemini_paid", False)),
             primary=str(self.cfg.get("ai.primary", "claude")),
-            smart=self.cfg.get("ai.mode", "smart") == "smart",
+            smart=self.cfg.get("ai.mode", "fast") == "smart",
             available_gemini=available,
             offline=offline,
             local=local,

@@ -125,6 +125,18 @@ class Bubble(QWidget):
         self.status.setStyleSheet(f"color: {MUTED}; font-size: 9pt; background: transparent;")
         self.status.hide()
         tools.addWidget(self.copy_btn)
+        # Gapga bog'liq bitta tugma (masalan, kalitsiz rejimda "Sozlamalarni ochish")
+        self.action_btn = QToolButton()
+        self.action_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.action_btn.setStyleSheet(
+            f"QToolButton {{ color: {ACCENT}; border: 1px solid {ACCENT}; padding: 2px 8px;"
+            f" border-radius: 8px; background: transparent; }}"
+            f"QToolButton:hover {{ background: #efeefa; }}"
+        )
+        self.action_btn.clicked.connect(self._on_action)
+        self.action_btn.hide()
+        self._action = None
+        tools.addWidget(self.action_btn)
         tools.addStretch(1)
         tools.addWidget(self.status)
         tools.addStretch(1)
@@ -177,9 +189,23 @@ class Bubble(QWidget):
 
     # --- matn --------------------------------------------------------------------------------
 
+    def show_action(self, text: str, fn) -> None:
+        """Joriy gap ostida bitta tugma; keyingi gap chiqqanda yo'qoladi."""
+        self._action = fn
+        self.action_btn.setText(text)
+        self.action_btn.show()
+        self._relayout()
+
+    def _on_action(self) -> None:
+        fn, self._action = self._action, None
+        self.action_btn.hide()
+        if fn is not None:
+            fn()
+
     def show_text(self, text: str, *, typewriter: bool = True, auto_hide: bool = True) -> None:
         """Yuening gapi (tayyor ibora yoki yakuniy javob)."""
         self.hide_timer.stop()
+        self.action_btn.hide()
         self._full = text
         if typewriter and text:
             self._shown = 0

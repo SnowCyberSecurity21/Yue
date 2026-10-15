@@ -286,6 +286,11 @@
     ["thinking", "Vaqtni tushunmadim. Masalan: «eslat 18:00: suv ichish» yoki «eslat ertaga 9:00: hisobot»."],
     ["neutral", "Nimani eslatay? Shunday yozing: «eslat: matn» yoki «eslat 1 soatdan keyin: matn»."]
   ],
+  "kalitsiz": [
+    ["smug", "Miyam hali o'chiq, lekin daftarim ishlaydi: «eslat: matn»."],
+    ["thinking", "Kalitsiz faqat vazifa yozaman. «vazifalar» deb yozsangiz, ro'yxatni ko'rsataman."],
+    ["neutral", "Gaplashish uchun AI kaliti kerak. Hozircha: «eslat 18:00: suv ichish»."]
+  ],
   "budget": [
     ["thinking", "Bugun ancha ko'p gaplashdik — siz belgilagan kunlik xarajat chegarasiga yetdik. Gaplashaveramiz, shunchaki bilib qo'ying."]
   ],

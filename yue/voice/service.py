@@ -68,6 +68,8 @@ class Voice(QObject):
     progress = Signal(int, int)  # tayyorlash: (bajarildi, jami)
     prepare_done = Signal(str)  # done / stopped / auth / credits / network / …
     account = Signal(object)  # Tekshirish natijasi (lug'at)
+    preview_done = Signal(str)  # "Eshitib ko'rish": ok / xato turi
+    _preview_ready = Signal(object, str, int)  # (mp3 yoki None, natija, harflar)
     _ready = Signal(int, int, object, int)  # (gen, idx, mp3 yoki None, so'ralgan harflar)
     _failed = Signal(int, str, str)  # (gen, xato turi, ruxsat nomi)
 
@@ -107,6 +109,7 @@ class Voice(QObject):
         self.last_credits: tuple[int, int] | None = None
         self._ready.connect(self._on_ready)
         self._failed.connect(self._on_failed)
+        self._preview_ready.connect(self._on_preview)
         self._migrate_voice_id()
 
     def _migrate_voice_id(self) -> None:
@@ -528,6 +531,35 @@ class Voice(QObject):
             self.account.emit({"used": used, "limit": limit, "voices": voices})
 
         threading.Thread(target=work, name="yue-voice-check", daemon=True).start()
+
+    def preview(self, key: str, voice_id: str, text: str) -> None:
+        """Usta: tanlangan ovozda bitta qisqa ibora (harflar bugungi hisobga qo'shiladi)."""
+        tts = tts_text(text)
+        if not tts or not valid_voice_id(voice_id):
+            self.preview_done.emit("bad")
+            return
+        client, model = self._client_factory(key), self.model
+
+        def work() -> None:
+            try:
+                data = client.synth(voice_id, tts, model)
+            except VoiceError as exc:
+                self._preview_ready.emit(None, exc.kind, 0)
+                return
+            except Exception:  # noqa: BLE001
+                log.exception("ovoz namunasi olinmadi")
+                self._preview_ready.emit(None, "bad", 0)
+                return
+            self._preview_ready.emit(data, "ok", len(tts))
+
+        threading.Thread(target=work, name="yue-voice-preview", daemon=True).start()
+
+    def _on_preview(self, data: object, result: str, chars: int) -> None:
+        if result == "ok" and isinstance(data, bytes) and data:
+            self._add_usage(chars)
+            self.stop()
+            self._push(data)
+        self.preview_done.emit(result if result != "ok" or data else "bad")
 
     def shutdown(self) -> None:
         self.stop()

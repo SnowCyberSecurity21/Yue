@@ -316,9 +316,9 @@ def test_humor_level_in_state_block():
     assert blocks[0].cache and "HARAKATLAR" in blocks[0].text  # katta persona keshlanadi
 
 
-def test_defaults_humor_and_smart_mode():
+def test_defaults_humor_and_fast_mode():
     assert Config().get("pet.humor") == "medium"
-    assert Config().get("ai.mode") == "smart"
+    assert Config().get("ai.mode") == "fast"
     assert Config({"ai": {"mode": "fast"}}).get("ai.mode") == "fast"  # tanlov saqlanadi
 
 

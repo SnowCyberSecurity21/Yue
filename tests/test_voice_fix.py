@@ -166,7 +166,8 @@ def test_settings_rejects_key_in_voice_id(controller, qtbot):  # noqa: F811
     assert EL_KEY not in c.cfg.path.read_text(encoding="utf-8")
     dlg.v_voice_id.setText("abc")
     assert dlg.v_voice_id_warn.text() == t("voice.voice_id.bad")
-    dlg._on_account({"used": 0, "limit": 100, "voices": [(VID, "Yue")]})  # noto'g'ri — almashadi
+    dlg._on_account({"used": 0, "limit": 100, "voices": [(VID, "Yue")]})
+    dlg.v_voices.setCurrentIndex(1)  # ro'yxatdan tanlash noto'g'ri qiymatni almashtiradi
     assert dlg.v_voice_id.text() == VID and not dlg.v_voice_id_warn.isVisibleTo(dlg)
 
 

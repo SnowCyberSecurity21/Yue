@@ -98,6 +98,7 @@ STRINGS: dict[str, str] = {
     "bubble.copied": "Nusxalandi",
     "bubble.close": "Yopish (Esc)",
     "bubble.thinking": "Yue o'ylayapti…",
+    "bubble.open_settings": "Sozlamalarni ochish",
     # --- Matn maydoni menyusi -----------------------------------------------------------------
     "edit.undo": "Bekor qilish",
     "edit.redo": "Qaytarish",
@@ -249,11 +250,43 @@ STRINGS: dict[str, str] = {
     ),
     "welcome.name": "Sizni qanday chaqiray?",
     "welcome.name.placeholder": "Ismingiz",
-    "welcome.keys": "Men o'ylashim uchun AI kaliti kerak",
-    "welcome.keys.intro": (
-        "Kamida bittasini kiriting. Claude — asosiy (tez va maxfiy), Gemini — zaxira. Kalitlar "
-        "faqat shu kompyuterda, Windows himoyasi ostida saqlanadi."
+    "welcome.ai": "Men o'ylashim uchun AI kerak",
+    "welcome.ai.intro": (
+        "Bittasini tanlang. Kalitlar faqat shu kompyuterda, Windows himoyasi ostida saqlanadi."
     ),
+    "welcome.ai.gemini": "Bepul — Google Gemini (tavsiya etiladi)",
+    "welcome.ai.claude": "Claude (pullik, eng aqlli)",
+    "welcome.ai.openrouter": "OpenRouter",
+    "welcome.ai.ollama": "Oflayn — Ollama",
+    "welcome.ai.none": "Hozircha kalitsiz",
+    "welcome.gemini.steps": (
+        "1) Pastdagi tugma bilan Google AI Studio sahifasini oching.\n"
+        "2) Google akkauntingiz bilan kiring.\n"
+        "3) «Create API key» tugmasini bosing.\n"
+        "4) Kalitni nusxalab, shu yerga qo'ying va «Tekshirish» ni bosing."
+    ),
+    "welcome.gemini.open": "Google AI Studio'ni ochish",
+    "welcome.claude.note": (
+        "Claude pullik: pul oldindan to'lanadi (console'da balans to'ldiriladi). Yue standart "
+        "holatda arzonroq Haiku modelini ishlatadi."
+    ),
+    "welcome.openrouter.note": "Modelni keyin Sozlamalar → AI bo'limida tanlash mumkin.",
+    "welcome.ollama.note": (
+        "Ollama — kompyuteringizning o'zida ishlaydigan model: internet kerak emas, suhbat "
+        "kompyuterdan chiqmaydi, lekin kuchliroq kompyuter talab qiladi. Ollama'ni o'rnating, "
+        "modelni keyin Sozlamalar → Offline bo'limida tanlaysiz."
+    ),
+    "welcome.ollama.open": "Ollama'ni yuklab olish",
+    "welcome.none.note": (
+        "Gaplashish ishlamaydi, lekin vazifalar, eslatmalar va animatsiyalar ishlaydi. Vazifani "
+        "chatga «eslat: matn» yoki «eslat 18:00: matn» deb yozing."
+    ),
+    "welcome.voice": "Ovoz (ixtiyoriy)",
+    "welcome.voice.intro": (
+        "ElevenLabs kaliti bo'lsa, gaplarimni ovozda ham aytaman. Bo'lmasa — o'tkazib yuboring, "
+        "faqat yozib gaplashamiz."
+    ),
+    "welcome.voice.skip": "O'tkazib yuborish",
     "welcome.gemini_warning": (
         "Diqqat: bepul Gemini tarifida Google so'rovlarni o'z modellarini yaxshilash uchun "
         "ishlatishi mumkin, ularni odamlar ham ko'rib chiqadi; Google shaxsiy ma'lumot "
@@ -291,11 +324,20 @@ STRINGS: dict[str, str] = {
     "memory.reset": "Oldingi xotirani ochib bo'lmadi, shuning uchun yangidan boshladim.",
     # --- Dastur haqida ---------------------------------------------------------------------
     "about.title": "Yue haqida",
-    "about.text": (
-        "Yue {version}\n\nWindows uchun ish stoli hamrohi va o'zbek tilida gaplashadigan AI "
-        "yordamchi.\n\nAI: Claude (Anthropic), Gemini (Google), OpenRouter.\nMa'lumotlaringiz shu "
-        "kompyuterda shifrlangan holda saqlanadi.\n\nMa'lumotlar papkasi:\n{path}"
+    "about.heading": "Yue {version}",
+    "about.description": (
+        "Windows uchun ish stoli hamrohi: o'zbek tilida gaplashadi, vazifalarni eslatadi, "
+        "tanaffus va uyquni nazorat qiladi. Bepul dastur, shaxsiy foydalanish uchun."
     ),
+    "about.privacy": (
+        "Maxfiylik: suhbatlar, vazifalar va xotira faqat shu kompyuterda, shifrlangan holda "
+        "saqlanadi. Suhbat faqat siz tanlagan AI provayderga yuboriladi. Telemetriya yo'q. Sog'liq "
+        "bo'yicha maslahatlar shifokor o'rnini bosmaydi."
+    ),
+    "about.data": "Ma'lumotlar papkasi: {path}",
+    "about.readme": "Qo'llanma",
+    "about.license": "Litsenziya",
+    "about.third_party": "Kutubxonalar litsenziyalari",
     # --- Bildirishnomalar -------------------------------------------------------------------
     "notify.task_title": "Yue — eslatma",
     "notify.answer_title": "Yue javob berdi",
@@ -374,7 +416,21 @@ STRINGS: dict[str, str] = {
     "voice.key": "ElevenLabs kaliti",
     "voice.link": "Kalitni olish (ElevenLabs)",
     "voice.voice_id": "Ovoz ID (voice_id)",
-    "voice.voice_id.placeholder": "Bo'sh qolsa — «Tekshirish»da «Yue» ovozi topiladi",
+    "voice.voice_id.placeholder": "Ro'yxatdan tanlang yoki Voice ID ni qo'lda yozing",
+    "voice.perms": "Kalitga kerakli ruxsatlar: «Text to Speech», «Voices — Read», «User — Read».",
+    "voice.voices": "Ovoz",
+    "voice.voices.empty": "Ro'yxat uchun kalitni tekshiring",
+    "voice.voices.choose": "Ovozni tanlang…",
+    "voice.voices.none": "Akkauntda ovoz yo'q — kutubxonadan qo'shing",
+    "voice.voices.refresh": "Yangilash",
+    "voice.preview": "Eshitib ko'rish",
+    "voice.preview.text": "Salom! Men Yueman. Vazifalaringizni eslatib turaman.",
+    "voice.preview.need": "Avval kalitni kiriting va ovozni tanlang.",
+    "voice.preview.ok": "Eshitdingizmi? Bu {n} harf bugungi hisobga qo'shildi.",
+    "voice.credits.note": (
+        "1 harf ≈ 1 kredit. ElevenLabs bepul tarifida oyiga 10 000 kredit. Kunlik chegarani "
+        "Sozlamalar → Ovoz bo'limida o'zgartirish mumkin."
+    ),
     "voice.model": "Model",
     "voice.model.standard": "Standart — Eleven v4 (eng sifatli)",
     "voice.model.fast": "Tez — Eleven v4 Turbo (jonli o'qish uchun)",
@@ -390,8 +446,6 @@ STRINGS: dict[str, str] = {
     ),
     "voice.check.running": "Tekshirilmoqda…",
     "voice.check.ok": "Kalit ishlayapti. Qolgan kredit: {left} / {total}",
-    "voice.check.found": "«{name}» ovozi topildi va tanlandi.",
-    "voice.check.no_voice": "«Yue» nomli ovoz topilmadi — Ovoz ID ni qo'lda yozing.",
     "voice.check.no_key": "Avval kalitni kiriting.",
     "voice.check.auth": "Kalit noto'g'ri yoki bekor qilingan.",
     "voice.check.credits": "Kredit tugagan.",
