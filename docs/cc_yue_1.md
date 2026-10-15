@@ -50,7 +50,7 @@ Rasmlar uchun tools\sync_pack.py yoz (Yue'dagi yagona vosita):
   - ovozni o'chirish: standart Ctrl+Alt+Shift+U.
   - band bo'lsa, logga va Sozlamalarga izoh chiqsin (Nora'dagidek). Hotkey ID'lari ham Nora'nikidan farq qilsin.
 - Shaxsiy narsalar:
-  - persona\talaffuz.json dan "Snowme" ni olib tashla va "Yue": "Yu-e" qo'sh (u faqat ovoz matniga ta'sir qiladi);
+  - persona\talaffuz.json dan Nora foydalanuvchisining laqabini olib tashla va "Yue": "Yu-e" qo'sh (u faqat ovoz matniga ta'sir qiladi);
   - kodda, testlarda va personada foydalanuvchiga tegishli narsa qolmasin: ism, laqab, C:\Users\user kabi yo'llar, email.
 
 ## 3. Munosabat tizimini olib tashlash
@@ -110,7 +110,7 @@ Persona va iboralar. Hozircha faqat mexanik tozalash, to'liq Yue personasini key
   - iboralar.json, persona fayllari, i18n va harakatlar.json da quyidagilar yo'q:
     - "Nora" so'zi;
     - romantik so'zlar: jonim, azizim, sevgilim, yuragim, sevaman, sevgi, o'pich, o'pay, quchoq, noz;
-  - "Snowme" hech qayerda yo'q;
+  - Nora foydalanuvchisining laqabi hech qayerda yo'q;
   - data_dir %APPDATA%\Yue ni beradi, YUE_DATA uni almashtiradi;
   - AI o_pish, bagirga_bosil yoki erka tegini qaytarsa, e'tiborsiz qoladi. "love" ifodasi "happy" ga almashadi;
   - silash kesatiq iborasini beradi, love yoki happy emas;

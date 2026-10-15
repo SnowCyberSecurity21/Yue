@@ -49,7 +49,7 @@ Papka: `C:\Yue`, yangi git repo (Nora tarixisiz). Nora (`C:\nora`) o'zgarmaydi v
   - u sizning ElevenLabs akkauntingizga bog'langan, boshqalarning kaliti bilan ishlamaydi;
   - qizning roziligi Nora uchun berilgan, ommaga tarqatish uchun emas.
 - **Shaxsiy narsalar chiqmaydi:**
-  - "Snowme" va sizga tegishli boshqa tafsilotlar;
+  - Nora'dagi laqabingiz va sizga tegishli boshqa tafsilotlar;
   - ovoz namunasi (`art_src/_voice`);
   - `reference/maomao` (litsenziyasiz);
   - Nora hujjatlari va git tarixi.
@@ -77,6 +77,19 @@ Hali ochiq:
 | 5 | Asosiy AI | Gemini bepul kaliti asosiy, Claude, OpenRouter va Ollama ixtiyoriy | shunday |
 | 6 | Repo | private, tarqatish Releases orqali / public | private |
 | 7 | Tarqatish kanali | GitHub Releases va Telegram kanal | — |
+
+## Holat (15-oktabr)
+- 1-bosqich tayyor: Yue 0.1.0 yig'ildi va o'rnatildi, 960 test o'tdi, o'rnatuvchi ~87 MB. Nora bilan yonma-yon ishlaydi.
+- Push qilinmadi: GitHub'da repo hali yo'q, gh o'rnatilmagan.
+- Ctrl+Alt+Y: boshqalarda standart bo'lib qoladi. Sizning kompyuteringizda bu tugmani Nora "yaqin" uchun egallagan, shuning uchun Yue Sozlamalarida boshqa birikma qo'yiladi (masalan, Ctrl+Alt+Shift+Y).
+- "N" harfi bor varaqlar:
+  - hoodie_black va hoodie_silver: idle, walk, talk, sitdown, expressions, wave, dangle, fall, land, ponder, walk_pocket, tea, excited_jump;
+  - hood_black: walk_music, music, hood_up;
+  - hood_silver: walk (yondan).
+  - Ikonkada va futbolkada harf yo'q.
+- GitHub'da private repo ochildi: SnowCyberSecurity21/Yue.
+- Keyingi qadam: `docs\cc_yue_2.md`. 2–6-bosqichlar (push, persona va iboralar, ovoz chegarasi, boshqalar uchun tayyorlash, "N" → "Y", sinov, 1.0.0 reliz) bitta promptda. Persona: `docs\yue_persona.txt`.
+- Repo private bo'lgani uchun GitHub Releases boshqalarga ko'rinmaydi. Setup fayli Telegram orqali yoki keyinroq ochiladigan alohida public repo orqali tarqatiladi.
 
 ## 4. Bosqichlar
 1. **CC-1 — Yue 0.1.0** (`docs/cc_yue_1.md`):
