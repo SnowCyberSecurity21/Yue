@@ -424,7 +424,8 @@ class Brain(QObject):
             elif ev.kind == "late":
                 expr, text = self.lines.pick("task_overdue", count=1, list=f"- {task}")
             else:
-                expr, text = self.lines.pick("task_due", task=task)
+                when = (ev.task.due or "")[-5:] or f"{dt.datetime.now():%H:%M}"
+                expr, text = self.lines.pick("task_due", task=task, time=when)
             self.say.emit(expr, text)
             self.notify.emit(t("notify.task_title"), task)
 

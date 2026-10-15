@@ -35,7 +35,7 @@ Papka: `C:\Yue`, yangi git repo (Nora tarixisiz). Nora (`C:\nora`) o'zgarmaydi v
 - Persona: jig'iga tegish ko'proq, romantika yo'q. Ilovani begona odamlar ishlatadi, shuning uchun hazil chegaralari qat'iy. Tashqi ko'rinish, tana, oila, pul, sog'liq va haqiqiy muvaffaqiyatsizlik ustidan kulinmaydi.
 - Maqtovga javob: Nora'dagidek uyaladi va buni jahl bilan yashiradi ("B-bu sizga emas!"). Bu romantika emas, faqat maqtovga reaksiya.
 - "Yue" ovozda "Yu-e" deb o'qiladi (`talaffuz.json`).
-- Xudining ko'kragidagi "N" harfi "Y" ga almashadi (4-bosqich).
+- Xudining ko'kragidagi "N" harfi qoladi. So'rashsa, Yue "N — Night, tungi smena formasi" deb javob beradi.
 - Raqs (standart): oddiy o'yin harakati, hamma uchun ishlaydi va rad etilmaydi.
 
 ## 2. Tarqatish uchun shartlar
@@ -68,7 +68,7 @@ Qabul qilingan (15-oktabr):
 |---|---|---|
 | 1 | Yue boshqalarda qaysi ovozda gapiradi | Har kim o'z ElevenLabs kalitini kiritadi va kutubxonadan ovoz tanlaydi. Kalit bo'lmasa, Yue ovozsiz ishlaydi. Nora ovozi Yue bilan tarqatilmaydi. |
 | 2 | Maqtovga javob | Uyaladi (Nora'dagidek), romantikasiz |
-| 3 | Xudidagi "N" harfi | "Y" ga almashadi |
+| 3 | Xudidagi "N" harfi | Qoladi. "Y" ga almashtirish 15-oktabrda bekor qilindi, o'zgarishlar orqaga qaytarildi. |
 | 4 | "Yue" ovozda | "Yu-e" |
 
 Hali ochiq:
@@ -82,13 +82,9 @@ Hali ochiq:
 - 1-bosqich tayyor: Yue 0.1.0 yig'ildi va o'rnatildi, 960 test o'tdi, o'rnatuvchi ~87 MB. Nora bilan yonma-yon ishlaydi.
 - Push qilinmadi: GitHub'da repo hali yo'q, gh o'rnatilmagan.
 - Ctrl+Alt+Y: boshqalarda standart bo'lib qoladi. Sizning kompyuteringizda bu tugmani Nora "yaqin" uchun egallagan, shuning uchun Yue Sozlamalarida boshqa birikma qo'yiladi (masalan, Ctrl+Alt+Shift+Y).
-- "N" harfi bor varaqlar:
-  - hoodie_black va hoodie_silver: idle, walk, talk, sitdown, expressions, wave, dangle, fall, land, ponder, walk_pocket, tea, excited_jump;
-  - hood_black: walk_music, music, hood_up;
-  - hood_silver: walk (yondan).
-  - Ikonkada va futbolkada harf yo'q.
 - GitHub'da private repo ochildi: SnowCyberSecurity21/Yue.
-- Keyingi qadam: `docs\cc_yue_2.md`. 2–6-bosqichlar (push, persona va iboralar, ovoz chegarasi, boshqalar uchun tayyorlash, "N" → "Y", sinov, 1.0.0 reliz) bitta promptda. Persona: `docs\yue_persona.txt`.
+- `docs\cc_yue_2.md`: 0–3-qismlar bajarildi va push qilindi (push, persona va iboralar, ovoz chegarasi, boshqalar uchun tayyorlash). 4-qism ("N" → "Y") yarmida to'xtatildi va bekor qilindi.
+- Keyingi qadam: `docs\cc_yue_3.md` — "N" → "Y" o'zgarishlarini orqaga qaytarish, sinov va 1.0.0 reliz.
 - Repo private bo'lgani uchun GitHub Releases boshqalarga ko'rinmaydi. Setup fayli Telegram orqali yoki keyinroq ochiladigan alohida public repo orqali tarqatiladi.
 
 ## 4. Bosqichlar
@@ -104,17 +100,12 @@ Hali ochiq:
    - birinchi ochilishdagi kalit ustasi va kalitsiz rejim;
    - ovoz (1-qaror);
    - foydalanuvchi uchun README, `THIRD_PARTY_LICENSES`, ikonka.
-4. **"N" → "Y":**
-   - xudi kadrlarida harf kichkina, shuning uchun CC uni to'plam kadrlarida avtomatik almashtiradi: harfni topadi, xudi rangi bilan bo'yaydi, o'rniga bir xil rang va qalinlikdagi "Y" chizadi;
-   - bu qadam `sync_pack.py` ichida bo'ladi, shuning uchun Nora'dan kelgan yangi rasmlarda ham harf o'zi almashadi;
-   - har to'plam uchun kontakt varaq (hamma kadrlar bitta rasmda) yasaladi, men tekshiraman;
-   - avtomat eplay olmagan kadrlar (yon va orqa ko'rinish, burmalar) ro'yxatga olinadi. Ular uchun ChatGPT'da faqat harfni tahrirlaydigan prompt yoziladi;
-   - ikonkada ham "N" bo'lsa, u ham almashadi.
+4. ~~"N" → "Y"~~ — bekor qilindi, harf qoladi.
 5. **Sinov:**
    - toza Windows'da (Windows Sandbox) o'rnatish: kalitsiz, Gemini bilan va ovozsiz;
    - Nora bilan yonma-yon;
    - 2–3 tanishga beta.
-6. **1.0.0 reliz.**
+6. **1.0.0 reliz** (`docs\cc_yue_3.md`).
 7. **Keyin:** yangi versiya chiqqanini tekshirish, kod imzosi.
 
 ## 5. Nora va Yue'ni birga yuritish

@@ -1,4 +1,4 @@
-""""Yue haqida" oynasi: versiya, qisqa tavsif, maxfiylik va hujjatlarni ochadigan tugmalar."""
+""" "Yue haqida" oynasi: versiya, qisqa tavsif, maxfiylik va hujjatlarni ochadigan tugmalar."""
 
 from __future__ import annotations
 

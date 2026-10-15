@@ -15,7 +15,6 @@ Birinchi ommaviy versiya.
   jonli o'qish to'xtaydi (oldindan tayyorlangan iboralar o'ynayveradi), tray'da bildirishnoma
   chiqadi; chegarani oshirsangiz, ovoz darhol qaytadi.
 - Tashlanganda yoki sayr oxirida reaksiya animatsiyasi gap tufayli kesilmaydi.
-- Xudi ko'kragidagi harf — "Y".
 - Tezkor tugmalar Sozlamalarda o'zgaradi: ko'rsatish/yashirish (Ctrl+Alt+Y), ovozni jim qilish
   (Ctrl+Alt+Shift+U).
 - "Yue haqida" oynasi: qo'llanma, litsenziya va kutubxonalar litsenziyalari.

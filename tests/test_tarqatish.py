@@ -77,7 +77,7 @@ def test_quick_task_is_reminded_on_time(controller, monkeypatch):  # noqa: F811
     late = dt.datetime.now() + dt.timedelta(minutes=2)
     monkeypatch.setattr(c.brain.scheduler, "now", lambda: late)
     c.brain.check_tasks()
-    assert len(told) == 1 and "choy" in told[0]
+    assert len(told) == 1 and "choy" in told[0] and "{" not in told[0]
     c.brain.check_tasks()
     assert len(told) == 1  # bir marta
 

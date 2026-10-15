@@ -89,7 +89,9 @@ def license_of(dist: metadata.Distribution) -> str:
     if lic and len(lic) < 120 and "\n" not in lic:
         return lic
     classifiers = [
-        c.split("::")[-1].strip() for c in meta.get_all("Classifier") or [] if c.startswith("License")
+        c.split("::")[-1].strip()
+        for c in meta.get_all("Classifier") or []
+        if c.startswith("License")
     ]
     return ", ".join(classifiers) or (lic.splitlines()[0] if lic else "noma'lum")
 

@@ -218,11 +218,36 @@ def test_ai_romantic_action_does_nothing_in_app(controller, monkeypatch):  # noq
 
 def test_pack_has_no_love_expression():
     raw = json.loads((paths.DEFAULT_PACK / "pack.json").read_text(encoding="utf-8"))
-    assert raw["name"] == "Yue" and "love" not in raw["expression_map"]
+    assert "love" not in raw["expression_map"]
     for tags in raw["expression_map"].values():
         assert "love" not in tags
     assert (paths.DEFAULT_PACK / "yue.ico").is_file()
     assert not (paths.DEFAULT_PACK / "nora.ico").exists()
+
+
+def test_sync_changes_only_love():
+    """Nora to'plamidan farq faqat "love": chaqiriladigan ro'yxatdan chiqadi, kadr nomi "_love"."""
+    import sys
+
+    sys.path.insert(0, str(ROOT / "tools"))
+    from sync_pack import transform_pack
+
+    src = {
+        "name": "Nora",
+        "layout": "under Nora",
+        "expression_map": {"happy": ["happy"], "love": ["love"], "shy": ["shy", "love"]},
+        "slots": {"expressions": {"variants": {"tee": {"sheets": [{"names": ["happy", "love"]}]}}}},
+        "wardrobe": {"rules": ["Nora sleeps"]},
+    }
+    out = transform_pack(src)
+    assert out["expression_map"] == {"happy": ["happy"], "shy": ["shy"]}
+    assert out["slots"]["expressions"]["variants"]["tee"]["sheets"][0]["names"] == [
+        "happy",
+        "_love",
+    ]
+    out["expression_map"], src["expression_map"] = {}, {}
+    out["slots"], src["slots"] = {}, {}
+    assert out == src  # boshqa hech narsa o'zgarmaydi
 
 
 def test_love_tag_never_shows_love_frame(controller):  # noqa: F811

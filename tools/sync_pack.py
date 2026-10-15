@@ -9,7 +9,7 @@ yangilanadi). Manbaga hech narsa yozilmaydi.
 
 Nima o'zgaradi:
 - nora.ico → yue.ico (icon.png nomi o'zgarmaydi);
-- pack.json: nom "Yue"; Yue'da ishlatilmaydigan ifodalar (UNUSED_EXPRESSIONS) chaqiriladigan
+- pack.json: Yue'da ishlatilmaydigan ifodalar (UNUSED_EXPRESSIONS) chaqiriladigan
   ro'yxatlardan (expression_map) chiqariladi. Kadrlar varaqda qoladi, faqat nomi "_" bilan
   boshlanadi — kadr tartibi buzilmaydi va hech qaysi teg ularga tushmaydi.
 """
@@ -31,18 +31,9 @@ UNUSED_EXPRESSIONS = frozenset({"love"})
 ICON_RENAME = {"nora.ico": "yue.ico"}
 
 
-def _rename_text(text: str) -> str:
-    return text.replace("Nora", "Yue")
-
-
 def transform_pack(data: dict) -> dict:
     """pack.json'ni Yue uchun moslaydi (asl lug'at o'zgarmaydi)."""
     data = json.loads(json.dumps(data))
-    data["name"] = "Yue"
-    for key in ("layout", "art"):
-        if isinstance(data.get(key), str):
-            data[key] = _rename_text(data[key])
-
     emap = data.get("expression_map", {})
     for tag in list(emap):
         if tag in UNUSED_EXPRESSIONS:
@@ -61,10 +52,6 @@ def transform_pack(data: dict) -> dict:
         fb = info.get("fallback")
         if isinstance(fb, str) and fb.split(":", 1)[-1] in UNUSED_EXPRESSIONS:
             info["fallback"] = "expressions:happy"
-
-    wardrobe = data.get("wardrobe", {})
-    if isinstance(wardrobe.get("rules"), list):
-        wardrobe["rules"] = [_rename_text(r) for r in wardrobe["rules"]]
     return data
 
 

@@ -1,11 +1,11 @@
 {
- "name": "Yue",
+ "name": "Nora",
  "version": 4,
  "author": "Original character created for this project",
  "art": "Painted sheets generated with ChatGPT from the approved reference sheet; cut, keyed and aligned by tools/art/ai_pack.py",
  "standing_height": 330,
  "height": 165,
- "layout": "<look>/<sheet>.png is one horizontal strip of frames, frame i at x = i*frame_width. Anchor = (frame_width/2, foot_y): the ground point under Yue (for pose=air: the body bottom of frame 0; for pose=jump the in-air frames are already lifted). Draw at height/standing_height scale by default (strips are 2x). faces=right: mirror when moving left.",
+ "layout": "<look>/<sheet>.png is one horizontal strip of frames, frame i at x = i*frame_width. Anchor = (frame_width/2, foot_y): the ground point under Nora (for pose=air: the body bottom of frame 0; for pose=jump the in-air frames are already lifted). Draw at height/standing_height scale by default (strips are 2x). faces=right: mirror when moving left.",
  "looks": {
   "tee": {
    "outfit": "tee",
@@ -947,7 +947,7 @@
    "Activities (kind=activity) whose slot has no variant for the current outfit are simply not chosen.",
    "Reactions (kind=reaction) without a variant for the current outfit play their 'fallback' (another slot, or 'expressions:<name>') if that has a variant for the current outfit; otherwise hold the first frame of the current outfit's idle. A reaction never changes the outfit.",
    "Only sleep changes the outfit on purpose. Expressions exist for all three outfits (tee, hoodie_black, hoodie_silver).",
-   "sleep exists only in hoodies: when Yue wears the tee, switch to hoodie_black (night) or hoodie_silver before lying down.",
+   "sleep exists only in hoodies: when Nora wears the tee, switch to hoodie_black (night) or hoodie_silver before lying down.",
    "Sitting activities (sit=true) are preceded by sitdown and followed by standup; sleep: sitdown -> ~250 ms crossfade -> sleep; on wake crossfade -> sit -> standup."
   ]
  }

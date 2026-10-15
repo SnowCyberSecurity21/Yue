@@ -27,11 +27,9 @@ Rasm va animatsiyalar manbasi Nora'da. Yue tayyor to'plamni ko'chirib oladi:
 ```powershell
 .venv\Scripts\python tools\sync_pack.py                     # C:\nora\assets\packs\nora_ai → assets\packs\yue
 .venv\Scripts\python tools\sync_pack.py D:\boshqa\nora_ai   # boshqa manba
-.venv\Scripts\python tools\sync_pack.py --review            # + build\review\<look>_<slot>.png
 ```
 
-Skript xudi kadrlaridagi "N" harfini "Y" ga almashtiradi (logo bosqichi). `assets\packs\yue` ni
-qo'lda tahrirlamang.
+`assets\packs\yue` ni qo'lda tahrirlamang.
 
 ## Yig'ish
 
